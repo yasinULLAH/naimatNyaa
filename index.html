@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <script>
@@ -9,19 +10,24 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wadi Al Raihan Transport Management</title>
-    <meta name="description" content="Offline-first vehicle company management software for transport and logistics operations in UAE.">
+    <meta name="description"
+        content="Offline-first vehicle company management software for transport and logistics operations in UAE.">
     <link rel="canonical" href="https://www.yasinbss.com">
     <meta property="og:title" content="Wadi Al Raihan Transport Management">
-    <meta property="og:description" content="Offline-first vehicle company management software for transport and logistics operations in UAE.">
+    <meta property="og:description"
+        content="Offline-first vehicle company management software for transport and logistics operations in UAE.">
     <meta property="og:url" content="https://www.yasinbss.com">
     <meta property="og:image" content="https://www.yasinbss.com/social-preview.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Wadi Al Raihan Transport Management">
-    <meta name="twitter:description" content="Offline-first vehicle company management software for transport and logistics operations in UAE.">
+    <meta name="twitter:description"
+        content="Offline-first vehicle company management software for transport and logistics operations in UAE.">
     <meta name="twitter:image" content="https://www.yasinbss.com/social-preview.jpg">
     <meta name="robots" content="noindex,nofollow">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -49,25 +55,31 @@
             background-color: var(--main-bg);
             color: var(--main-text);
         }
+
         .theme-header {
             background-color: var(--header-bg);
             color: var(--header-text);
         }
+
         .theme-sidebar {
             background-color: var(--sidebar-bg);
             color: var(--sidebar-text);
         }
+
         .theme-footer {
             background-color: var(--footer-bg);
             color: var(--footer-text);
         }
+
         .theme-primary-btn {
             background-color: var(--secondary-color);
             color: #ffffff;
         }
+
         .theme-primary-btn:hover {
             filter: brightness(0.9);
         }
+
         select {
             padding: 0.5rem 1rem !important;
             border: 1px solid #cbd5e1 !important;
@@ -77,13 +89,16 @@
             font-size: 0.875rem !important;
             color: #0f172a !important;
         }
+
         select:focus {
             border-color: var(--secondary-color) !important;
             box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
         }
+
         .ts-wrapper {
             width: 100% !important;
         }
+
         .ts-wrapper .ts-control {
             padding: 0.5rem 1.75rem 0.5rem 1rem !important;
             border: 1px solid #cbd5e1 !important;
@@ -97,10 +112,12 @@
             display: flex !important;
             align-items: center !important;
         }
+
         .ts-wrapper.focus .ts-control {
             border-color: var(--secondary-color) !important;
             box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
         }
+
         .ts-wrapper .ts-control::after {
             content: "\f078" !important;
             font-family: "Font Awesome 6 Free" !important;
@@ -113,6 +130,7 @@
             color: #64748b !important;
             pointer-events: none !important;
         }
+
         .ts-wrapper .ts-control .ts-control-input {
             font-size: 0.875rem !important;
             background: transparent !important;
@@ -121,6 +139,7 @@
             margin: 0 !important;
             box-shadow: none !important;
         }
+
         .ts-dropdown {
             border: 1px solid #cbd5e1 !important;
             border-radius: 0.5rem !important;
@@ -129,25 +148,30 @@
             background-color: #ffffff !important;
             z-index: 1000 !important;
         }
+
         .ts-dropdown .optgroup-header {
             font-size: 0.75rem !important;
             font-weight: 600 !important;
             color: #64748b !important;
             padding: 0.5rem 1rem !important;
         }
+
         .ts-dropdown .option {
             padding: 0.5rem 1rem !important;
             font-size: 0.875rem !important;
             color: #0f172a !important;
             cursor: pointer !important;
         }
+
         .ts-dropdown .option.active {
             background-color: #f1f5f9 !important;
             color: #0f172a !important;
         }
+
         .ts-dropdown .option:hover {
             background-color: #f1f5f9 !important;
         }
+
         .swal2-popup.swal2-toast .swal2-input,
         .swal2-popup.swal2-toast .swal2-file,
         .swal2-popup.swal2-toast .swal2-textarea,
@@ -156,14 +180,16 @@
         .swal2-popup.swal2-toast .swal2-checkbox {
             display: none !important;
         }
+
         @media print {
-            .no-print, 
-            .dataTables_length, 
-            .dataTables_filter, 
-            .dataTables_paginate, 
+
+            .no-print,
+            .dataTables_length,
+            .dataTables_filter,
+            .dataTables_paginate,
             .dataTables_info,
             .dt-buttons,
-            button, 
+            button,
             .close-modal-btn,
             .btn-sm,
             header,
@@ -171,7 +197,11 @@
             footer {
                 display: none !important;
             }
-            html, body, #main-app, main {
+
+            html,
+            body,
+            #main-app,
+            main {
                 height: auto !important;
                 overflow: visible !important;
                 background: white !important;
@@ -180,33 +210,44 @@
                 margin: 0 !important;
                 padding: 0 !important;
             }
+
             main {
                 padding: 1.5cm !important;
             }
+
             .app-page {
                 display: block !important;
                 opacity: 1 !important;
             }
+
             .app-page.hidden {
                 display: none !important;
             }
-            table, th, td {
+
+            table,
+            th,
+            td {
                 border: 1px solid #cbd5e1 !important;
                 border-collapse: collapse !important;
             }
+
             table {
                 width: 100% !important;
                 margin-top: 1rem !important;
             }
-            th, td {
+
+            th,
+            td {
                 padding: 8px !important;
                 font-size: 10pt !important;
                 text-align: left !important;
             }
+
             th {
                 background-color: #f8fafc !important;
                 font-weight: bold !important;
             }
+
             .print-header {
                 display: block !important;
                 text-align: center !important;
@@ -214,80 +255,98 @@
                 border-bottom: 2px solid #0f172a !important;
                 padding-bottom: 1rem !important;
             }
+
             .print-header h1 {
                 font-size: 20pt !important;
                 font-weight: bold !important;
                 color: #0f172a !important;
                 margin: 0 !important;
             }
+
             .print-header p {
                 font-size: 10pt !important;
                 color: #475569 !important;
                 margin: 4px 0 0 0 !important;
             }
         }
+
         @media screen {
             .print-header {
                 display: none !important;
             }
         }
+
         @media (min-width: 768px) {
             #sidebar-container nav {
                 overflow-x: hidden !important;
             }
+
             .sidebar-collapsed #sidebar-container {
                 width: 4.5rem !important;
             }
+
             .sidebar-collapsed .sidebar-text {
                 display: none !important;
             }
+
             .sidebar-collapsed #sidebar-avatar-wrapper {
                 display: none !important;
             }
+
             .sidebar-collapsed #sidebar-toggle-btn i {
                 transform: rotate(180deg);
             }
+
             .sidebar-collapsed #logout-btn span {
                 display: none !important;
             }
+
             .sidebar-collapsed #logout-btn {
                 padding: 0.5rem !important;
                 justify-content: center !important;
             }
+
             .sidebar-collapsed .nav-link {
                 justify-content: center !important;
                 padding-left: 0 !important;
                 padding-right: 0 !important;
             }
-            .sidebar-collapsed #sidebar-container > div:first-child {
+
+            .sidebar-collapsed #sidebar-container>div:first-child {
                 padding-left: 0 !important;
                 padding-right: 0 !important;
                 justify-content: center !important;
             }
         }
-        .dataTables_wrapper .dataTables_length, 
-        .dataTables_wrapper .dataTables_filter, 
-        .dataTables_wrapper .dataTables_info, 
-        .dataTables_wrapper .dataTables_processing, 
+
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter,
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_processing,
         .dataTables_wrapper .dataTables_paginate {
             color: inherit !important;
             margin-bottom: 0.5rem;
             font-size: 0.75rem !important;
         }
+
         .dataTables_wrapper .dataTables_filter {
             float: left !important;
         }
+
         .dataTables_wrapper .dataTables_length {
             float: right !important;
         }
+
         .dataTables_wrapper .dataTables_info {
             float: left !important;
             padding-top: 0.5rem !important;
         }
+
         .dataTables_wrapper .dataTables_paginate {
             float: right !important;
             padding-top: 0.5rem !important;
         }
+
         .dataTables_wrapper .dataTables_filter input {
             border: 1px solid #cbd5e1 !important;
             border-radius: 6px !important;
@@ -296,6 +355,7 @@
             margin-left: 0.5rem !important;
             outline: none !important;
         }
+
         .dataTables_wrapper .dataTables_length select {
             border: 1px solid #cbd5e1 !important;
             border-radius: 6px !important;
@@ -303,6 +363,7 @@
             font-size: 0.7rem !important;
             outline: none !important;
         }
+
         .dataTables_wrapper .dataTables_paginate .paginate_button {
             padding: 0.1rem 0.3rem !important;
             font-size: 0.65rem !important;
@@ -311,11 +372,13 @@
             background: #ffffff !important;
             color: #0f172a !important;
         }
+
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
             background: var(--secondary-color) !important;
             color: #ffffff !important;
             border-color: var(--secondary-color) !important;
         }
+
         table.dataTable thead th {
             font-size: 0.65rem !important;
             letter-spacing: 0.05em !important;
@@ -324,13 +387,16 @@
             font-weight: 600 !important;
             text-transform: uppercase !important;
         }
+
         table.dataTable tbody td {
             padding: 0.4rem !important;
             font-size: 0.75rem !important;
         }
+
         table.dataTable.no-footer {
             border-bottom: 1px solid #cbd5e1 !important;
         }
+
         table.dataTable thead .sorting,
         table.dataTable thead .sorting_asc,
         table.dataTable thead .sorting_desc {
@@ -339,6 +405,7 @@
             padding-right: 20px !important;
             cursor: pointer;
         }
+
         table.dataTable thead .sorting::after {
             content: "\f0dc";
             font-family: "Font Awesome 6 Free";
@@ -350,6 +417,7 @@
             opacity: 0.3;
             font-size: 0.6rem;
         }
+
         table.dataTable thead .sorting_asc::after {
             content: "\f0de";
             font-family: "Font Awesome 6 Free";
@@ -362,6 +430,7 @@
             font-size: 0.6rem;
             color: var(--secondary-color);
         }
+
         table.dataTable thead .sorting_desc::after {
             content: "\f0dd";
             font-family: "Font Awesome 6 Free";
@@ -374,7 +443,11 @@
             font-size: 0.6rem;
             color: var(--secondary-color);
         }
-        button.dt-button, div.dt-button, a.dt-button, input.dt-button {
+
+        button.dt-button,
+        div.dt-button,
+        a.dt-button,
+        input.dt-button {
             border-radius: 6px !important;
             border: 1px solid #e2e8f0 !important;
             background: #ffffff !important;
@@ -382,62 +455,140 @@
             padding: 0.3rem 0.6rem !important;
             font-size: 0.8rem !important;
         }
-        button.dt-button:hover:not(.disabled), div.dt-button:hover:not(.disabled), a.dt-button:hover:not(.disabled), input.dt-button:hover:not(.disabled) {
+
+        button.dt-button:hover:not(.disabled),
+        div.dt-button:hover:not(.disabled),
+        a.dt-button:hover:not(.disabled),
+        input.dt-button:hover:not(.disabled) {
             background: #f8fafc !important;
             border: 1px solid #cbd5e1 !important;
         }
-        html, body {
+
+        html,
+        body {
             overflow-x: hidden;
             width: 100%;
         }
+
         .scrollbar-none::-webkit-scrollbar {
             display: none !important;
         }
+
         .scrollbar-none {
             -ms-overflow-style: none !important;
             scrollbar-width: none !important;
         }
+
         @media (max-width: 768px) {
-            html, body {
+
+            html,
+            body {
                 overflow-x: hidden !important;
                 width: 100vw !important;
                 position: relative !important;
             }
+
             #main-app {
                 max-width: 100vw !important;
                 overflow-x: hidden !important;
             }
+
             main {
                 max-width: 100vw !important;
                 overflow-x: hidden !important;
                 padding-bottom: 6rem !important;
             }
+
             body {
                 font-size: 13px !important;
             }
-            .text-6xl { font-size: 1.75rem !important; line-height: 2.25rem !important; }
-            .text-5xl { font-size: 1.5rem !important; line-height: 2rem !important; }
-            .text-4xl { font-size: 1.35rem !important; line-height: 1.75rem !important; }
-            .text-3xl { font-size: 1.2rem !important; line-height: 1.5rem !important; }
-            .text-2xl { font-size: 1.1rem !important; line-height: 1.4rem !important; }
-            .text-xl { font-size: 1rem !important; line-height: 1.25rem !important; }
-            .text-lg { font-size: 0.875rem !important; line-height: 1.2rem !important; }
-            .text-base { font-size: 0.8125rem !important; line-height: 1.15rem !important; }
-            .text-sm { font-size: 0.75rem !important; line-height: 1rem !important; }
-            .text-xs { font-size: 0.65rem !important; line-height: 0.9rem !important; }
-            h1 { font-size: 1.25rem !important; }
-            h2 { font-size: 1.1rem !important; }
-            h3 { font-size: 1rem !important; }
-            .p-8 { padding: 1rem !important; }
-            .p-6 { padding: 0.75rem !important; }
-            .p-5 { padding: 0.65rem !important; }
-            .p-4 { padding: 0.5rem !important; }
+
+            .text-6xl {
+                font-size: 1.75rem !important;
+                line-height: 2.25rem !important;
+            }
+
+            .text-5xl {
+                font-size: 1.5rem !important;
+                line-height: 2rem !important;
+            }
+
+            .text-4xl {
+                font-size: 1.35rem !important;
+                line-height: 1.75rem !important;
+            }
+
+            .text-3xl {
+                font-size: 1.2rem !important;
+                line-height: 1.5rem !important;
+            }
+
+            .text-2xl {
+                font-size: 1.1rem !important;
+                line-height: 1.4rem !important;
+            }
+
+            .text-xl {
+                font-size: 1rem !important;
+                line-height: 1.25rem !important;
+            }
+
+            .text-lg {
+                font-size: 0.875rem !important;
+                line-height: 1.2rem !important;
+            }
+
+            .text-base {
+                font-size: 0.8125rem !important;
+                line-height: 1.15rem !important;
+            }
+
+            .text-sm {
+                font-size: 0.75rem !important;
+                line-height: 1rem !important;
+            }
+
+            .text-xs {
+                font-size: 0.65rem !important;
+                line-height: 0.9rem !important;
+            }
+
+            h1 {
+                font-size: 1.25rem !important;
+            }
+
+            h2 {
+                font-size: 1.1rem !important;
+            }
+
+            h3 {
+                font-size: 1rem !important;
+            }
+
+            .p-8 {
+                padding: 1rem !important;
+            }
+
+            .p-6 {
+                padding: 0.75rem !important;
+            }
+
+            .p-5 {
+                padding: 0.65rem !important;
+            }
+
+            .p-4 {
+                padding: 0.5rem !important;
+            }
+
             #page-dashboard .grid {
                 gap: 0.75rem !important;
             }
+
             #page-dashboard p.text-3xl {
                 font-size: 1.25rem !important;
             }
+
             header {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
@@ -446,21 +597,26 @@
                 -webkit-overflow-scrolling: touch !important;
                 max-width: 100vw !important;
             }
+
             header::-webkit-scrollbar {
                 display: none !important;
             }
+
             header {
                 scrollbar-width: none !important;
             }
+
             #global-search-wrapper {
                 min-width: 120px !important;
                 max-width: 180px !important;
             }
+
             #global-search {
                 font-size: 0.8rem !important;
                 padding-top: 0.35rem !important;
                 padding-bottom: 0.35rem !important;
             }
+
             #sidebar-container {
                 width: 100% !important;
                 max-width: 100vw !important;
@@ -474,9 +630,11 @@
                 box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15) !important;
                 transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
             }
+
             #sidebar-container.nav-hidden {
                 transform: translateY(100%) !important;
             }
+
             #sidebar-container nav {
                 display: flex !important;
                 flex-direction: row !important;
@@ -490,6 +648,7 @@
                 gap: 0.2rem !important;
                 padding: 0 0.4rem !important;
             }
+
             #sidebar-container .nav-link {
                 flex-shrink: 0 !important;
                 display: flex !important;
@@ -502,15 +661,33 @@
                 border-radius: 0.375rem !important;
                 transition: all 0.2s ease !important;
             }
+
             #sidebar-container .nav-link i {
                 font-size: 0.875rem !important;
             }
+
             .sidebar-text {
                 display: none !important;
             }
-            .dataTables_wrapper { max-width: 100vw; overflow-x: auto; -webkit-overflow-scrolling: touch !important; padding-bottom: 0.5rem; }
-            .dt-buttons { margin-bottom: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.25rem; }
-            .dt-buttons .dt-button { padding: 0.25rem 0.5rem !important; font-size: 0.75rem !important; }
+
+            .dataTables_wrapper {
+                max-width: 100vw;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch !important;
+                padding-bottom: 0.5rem;
+            }
+
+            .dt-buttons {
+                margin-bottom: 0.5rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+            }
+
+            .dt-buttons .dt-button {
+                padding: 0.25rem 0.5rem !important;
+                font-size: 0.75rem !important;
+            }
         }
     </style>
     <style id="theme-style">
@@ -529,16 +706,18 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body class="min-h-screen flex flex-col antialiased">
 
-    <div id="auth-container" class="flex-grow flex items-center justify-center p-4 bg-slate-900 animate__animated animate__fadeIn">
+    <div id="auth-container"
+        class="flex-grow flex items-center justify-center p-4 bg-slate-900 animate__animated animate__fadeIn">
         <div class="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden">
             <div class="p-8 theme-header flex flex-col items-center">
                 <i class="fa-solid fa-truck-fast text-4xl mb-2 text-blue-500"></i>
                 <h1 class="text-2xl font-bold tracking-tight">Wadi Al Raihan Transport</h1>
                 <p class="text-sm opacity-80 mt-1">Vehicle Company Management System</p>
             </div>
-            
+
             <div id="login-form-wrapper" class="p-8">
                 <form id="login-form" class="space-y-4">
                     <div>
@@ -547,7 +726,9 @@
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
                                 <i class="fa-solid fa-user"></i>
                             </span>
-                            <input type="text" name="username" id="login-username" class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Enter username" required>
+                            <input type="text" name="username" id="login-username"
+                                class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                placeholder="Enter username" required>
                         </div>
                     </div>
                     <div>
@@ -556,13 +737,18 @@
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
                                 <i class="fa-solid fa-lock"></i>
                             </span>
-                            <input type="password" name="password" id="login-password" class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Enter password" required>
+                            <input type="password" name="password" id="login-password"
+                                class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                placeholder="Enter password" required>
                         </div>
                     </div>
-                    <button type="submit" id="login-btn" class="w-full py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow">Sign In</button>
+                    <button type="submit" id="login-btn"
+                        class="w-full py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow">Sign
+                        In</button>
                 </form>
                 <div class="mt-4 text-center">
-                    <button id="show-register-btn" class="text-sm text-blue-600 hover:underline">Need a new account? Register here</button>
+                    <button id="show-register-btn" class="text-sm text-blue-600 hover:underline">Need a new account?
+                        Register here</button>
                 </div>
             </div>
 
@@ -574,7 +760,9 @@
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
                                 <i class="fa-solid fa-user"></i>
                             </span>
-                            <input type="text" name="regUsername" id="register-username" class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Choose username" required>
+                            <input type="text" name="regUsername" id="register-username"
+                                class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                placeholder="Choose username" required>
                         </div>
                     </div>
                     <div>
@@ -583,7 +771,9 @@
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
                                 <i class="fa-solid fa-lock"></i>
                             </span>
-                            <input type="password" name="regPassword" id="register-password" class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Min 8 chars, 1 special symbol" required>
+                            <input type="password" name="regPassword" id="register-password"
+                                class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                placeholder="Min 8 chars, 1 special symbol" required>
                         </div>
                     </div>
                     <div>
@@ -592,71 +782,88 @@
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
                                 <i class="fa-solid fa-lock-open"></i>
                             </span>
-                            <input type="password" name="regConfirmPassword" id="register-confirm-password" class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Confirm password" required>
+                            <input type="password" name="regConfirmPassword" id="register-confirm-password"
+                                class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                placeholder="Confirm password" required>
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-1">Select Role</label>
-                        <select name="regRole" id="register-role" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <select name="regRole" id="register-role"
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
                             <option value="Admin">Administrator (Full Access)</option>
                             <option value="Standard">Standard User (Read-Only Deletes)</option>
                         </select>
                     </div>
-                    <button type="submit" id="register-btn" class="w-full py-2.5 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors shadow">Register</button>
+                    <button type="submit" id="register-btn"
+                        class="w-full py-2.5 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors shadow">Register</button>
                 </form>
                 <div class="mt-4 text-center">
-                    <button id="show-login-btn" class="text-sm text-blue-600 hover:underline">Already have an account? Sign in</button>
+                    <button id="show-login-btn" class="text-sm text-blue-600 hover:underline">Already have an account?
+                        Sign in</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="main-app" class="flex-grow flex flex-col md:flex-row hidden md:h-screen md:overflow-hidden">
-        <aside id="sidebar-container" class="transition-all duration-300 w-full h-16 fixed bottom-0 left-0 right-0 z-50 flex flex-row items-center justify-around theme-sidebar border-t border-slate-800 md:w-64 md:h-screen md:relative md:flex md:flex-col md:justify-start md:border-t-0 no-print shadow-lg">
+        <aside id="sidebar-container"
+            class="transition-all duration-300 w-full h-16 fixed bottom-0 left-0 right-0 z-50 flex flex-row items-center justify-around theme-sidebar border-t border-slate-800 md:w-64 md:h-screen md:relative md:flex md:flex-col md:justify-start md:border-t-0 no-print shadow-lg">
             <div class="p-6 border-b border-slate-800 flex items-center justify-between hidden md:flex w-full">
                 <div class="flex items-center gap-3 sidebar-text">
                     <i class="fa-solid fa-circle-nodes text-blue-400 text-2xl"></i>
                     <span class="font-bold tracking-wider text-lg">Wadi Al Raihan</span>
                 </div>
-                <button id="sidebar-toggle-btn" class="text-slate-400 hover:text-white p-1 rounded transition-colors focus:outline-none">
+                <button id="sidebar-toggle-btn"
+                    class="text-slate-400 hover:text-white p-1 rounded transition-colors focus:outline-none">
                     <i class="fa-solid fa-angles-left"></i>
                 </button>
             </div>
 
-            <nav class="w-full flex flex-row md:flex-col justify-around md:justify-start md:p-4 md:space-y-1 overflow-x-auto md:overflow-y-auto whitespace-nowrap scrollbar-none">
-                <a href="#/dashboard" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
+            <nav
+                class="w-full flex flex-row md:flex-col justify-around md:justify-start md:p-4 md:space-y-1 overflow-x-auto md:overflow-y-auto whitespace-nowrap scrollbar-none">
+                <a href="#/dashboard"
+                    class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
                     <i class="fa-solid fa-chart-line text-lg md:text-sm"></i>
                     <span class="text-[10px] md:text-sm sidebar-text">Dashboard</span>
                 </a>
-                <a href="#/company" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
+                <a href="#/company"
+                    class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
                     <i class="fa-solid fa-building text-lg md:text-sm"></i>
                     <span class="text-[10px] md:text-sm sidebar-text">Profile & Switcher</span>
                 </a>
-                <a href="#/vehicles" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
+                <a href="#/vehicles"
+                    class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
                     <i class="fa-solid fa-truck text-lg md:text-sm"></i>
                     <span class="text-[10px] md:text-sm sidebar-text">Vehicles</span>
                 </a>
-                <a href="#/drivers" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
+                <a href="#/drivers"
+                    class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
                     <i class="fa-solid fa-users text-lg md:text-sm"></i>
                     <span class="text-[10px] md:text-sm sidebar-text">Drivers</span>
                 </a>
-                <a href="#/maintenance" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
+                <a href="#/maintenance"
+                    class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
                     <i class="fa-solid fa-screwdriver-wrench text-lg md:text-sm"></i>
                     <span class="text-[10px] md:text-sm sidebar-text">Maintenance</span>
                 </a>
-                <a href="#/fines" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
+                <a href="#/fines"
+                    class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
                     <i class="fa-solid fa-circle-exclamation text-lg md:text-sm"></i>
                     <span class="text-[10px] md:text-sm sidebar-text">Fines</span>
                 </a>
-                <a href="#/expiries" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
+                <a href="#/expiries"
+                    class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
                     <i class="fa-solid fa-calendar-days text-lg md:text-sm"></i>
                     <span class="text-[10px] md:text-sm sidebar-text">Expiry Tracker</span>
                 </a>
-                <a href="#/reports" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
+                <a href="#/reports"
+                    class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
                     <i class="fa-solid fa-file-invoice text-lg md:text-sm"></i>
                     <span class="text-[10px] md:text-sm sidebar-text">Reports</span>
                 </a>
-                <a href="#/backup" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
+                <a href="#/backup"
+                    class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
                     <i class="fa-solid fa-database text-lg md:text-sm"></i>
                     <span class="text-[10px] md:text-sm sidebar-text">Backup & Restore</span>
                 </a>
@@ -664,36 +871,47 @@
         </aside>
 
         <div class="flex-grow flex flex-col min-w-0 md:h-full md:overflow-hidden">
-            <header class="h-16 bg-white shadow-sm border-b border-slate-100 flex items-center justify-between px-6 no-print">
+            <header
+                class="h-16 bg-white shadow-sm border-b border-slate-100 flex items-center justify-between px-6 no-print">
                 <div class="flex items-center gap-4 flex-grow max-w-lg">
                     <div class="relative w-full flex items-center gap-2">
                         <div class="relative flex-grow" id="global-search-wrapper">
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </span>
-                            <input type="text" id="global-search" class="w-full pl-10 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Search Vehicles, Drivers, Fines, Maintenance...">
-                            <div id="search-suggestions" class="absolute left-0 right-0 top-full mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl max-h-80 overflow-y-auto z-[100] hidden animate__animated animate__fadeIn animate__faster"></div>
+                            <input type="text" id="global-search"
+                                class="w-full pl-10 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                placeholder="Search Vehicles, Drivers, Fines, Maintenance...">
+                            <div id="search-suggestions"
+                                class="absolute left-0 right-0 top-full mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl max-h-80 overflow-y-auto z-[100] hidden animate__animated animate__fadeIn animate__faster">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
                     <div>
-                        <button id="branch-switcher-btn" class="px-2 py-1.5 md:px-3 bg-slate-50 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200 text-xs font-semibold flex items-center gap-1 md:gap-2 shadow-sm">
-                            <i class="fa-solid fa-code-branch text-blue-500 text-sm"></i> 
-                            <span id="active-branch-name-badge" class="hidden md:inline-block max-w-[150px] truncate">Loading Branch...</span>
+                        <button id="branch-switcher-btn"
+                            class="px-2 py-1.5 md:px-3 bg-slate-50 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200 text-xs font-semibold flex items-center gap-1 md:gap-2 shadow-sm">
+                            <i class="fa-solid fa-code-branch text-blue-500 text-sm"></i>
+                            <span id="active-branch-name-badge"
+                                class="hidden md:inline-block max-w-[150px] truncate">Loading Branch...</span>
                         </button>
                     </div>
-                    <button id="header-profile-btn" class="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 transition-all font-bold text-xs flex items-center justify-center shadow-sm">
+                    <button id="header-profile-btn"
+                        class="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 transition-all font-bold text-xs flex items-center justify-center shadow-sm">
                         <span id="header-avatar-initials">AD</span>
                     </button>
-                    <button id="logout-btn" class="w-8 h-8 rounded-lg bg-slate-50 text-slate-600 hover:bg-red-50 hover:text-red-600 border border-slate-200 transition-all flex items-center justify-center shadow-sm text-sm">
+                    <button id="logout-btn"
+                        class="w-8 h-8 rounded-lg bg-slate-50 text-slate-600 hover:bg-red-50 hover:text-red-600 border border-slate-200 transition-all flex items-center justify-center shadow-sm text-sm">
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </button>
-                    <div id="renewal-warning" class="hidden animate__animated animate__pulse animate__infinite px-2 py-1 md:px-3 bg-amber-500 text-white text-xs font-semibold rounded-full shadow flex items-center gap-1">
+                    <div id="renewal-warning"
+                        class="hidden animate__animated animate__pulse animate__infinite px-2 py-1 md:px-3 bg-amber-500 text-white text-xs font-semibold rounded-full shadow flex items-center gap-1">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                         <span id="renewal-warning-text" class="hidden md:inline">Tenant Renewal Alert</span>
                     </div>
-                    <button id="quick-add-vehicle-btn" class="px-2 py-1.5 md:px-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-1.5 transition-colors shadow">
+                    <button id="quick-add-vehicle-btn"
+                        class="px-2 py-1.5 md:px-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-1.5 transition-colors shadow">
                         <i class="fa-solid fa-plus"></i> <span class="hidden md:inline">Quick Vehicle</span>
                     </button>
                 </div>
@@ -705,31 +923,35 @@
                     <p>Official Fleet Operations & Logistics Ledger Report</p>
                     <p>Generated on: <span id="print-date-badge"></span></p>
                 </div>
-                
+
                 <section id="page-dashboard" class="app-page space-y-6">
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-5 text-white shadow-md flex items-center justify-between">
+                        <div
+                            class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-5 text-white shadow-md flex items-center justify-between">
                             <div>
                                 <p class="text-xs font-medium opacity-85 uppercase tracking-wider">Total Vehicles</p>
                                 <p class="text-3xl font-bold mt-1" id="dash-total-vehicles">0</p>
                             </div>
                             <div class="text-4xl opacity-30"><i class="fa-solid fa-truck"></i></div>
                         </div>
-                        <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-5 text-white shadow-md flex items-center justify-between">
+                        <div
+                            class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-5 text-white shadow-md flex items-center justify-between">
                             <div>
                                 <p class="text-xs font-medium opacity-85 uppercase tracking-wider">Active Fleet</p>
                                 <p class="text-3xl font-bold mt-1" id="dash-active-vehicles">0</p>
                             </div>
                             <div class="text-4xl opacity-30"><i class="fa-solid fa-circle-check"></i></div>
                         </div>
-                        <div class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-5 text-white shadow-md flex items-center justify-between">
+                        <div
+                            class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-5 text-white shadow-md flex items-center justify-between">
                             <div>
                                 <p class="text-xs font-medium opacity-85 uppercase tracking-wider">Expired Reg.</p>
                                 <p class="text-3xl font-bold mt-1" id="dash-expired-registrations">0</p>
                             </div>
                             <div class="text-4xl opacity-30"><i class="fa-solid fa-triangle-exclamation"></i></div>
                         </div>
-                        <div class="bg-gradient-to-br from-rose-500 to-rose-600 rounded-2xl p-5 text-white shadow-md flex items-center justify-between">
+                        <div
+                            class="bg-gradient-to-br from-rose-500 to-rose-600 rounded-2xl p-5 text-white shadow-md flex items-center justify-between">
                             <div>
                                 <p class="text-xs font-medium opacity-85 uppercase tracking-wider">Total Fines (AED)</p>
                                 <p class="text-3xl font-bold mt-1" id="dash-total-fines">0.00</p>
@@ -739,27 +961,33 @@
                     </div>
 
                     <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-                        <div class="bg-white rounded-xl p-5 border border-slate-100 shadow-sm flex items-center justify-between">
+                        <div
+                            class="bg-white rounded-xl p-5 border border-slate-100 shadow-sm flex items-center justify-between">
                             <div class="flex items-center gap-3">
-                                <div class="p-3 bg-red-50 text-red-500 rounded-lg"><i class="fa-solid fa-shield-halved text-xl"></i></div>
+                                <div class="p-3 bg-red-50 text-red-500 rounded-lg"><i
+                                        class="fa-solid fa-shield-halved text-xl"></i></div>
                                 <div>
                                     <p class="text-xs text-slate-500 font-medium">Insurance Expiry Soon</p>
                                     <p class="text-xl font-bold text-slate-800" id="dash-insurance-expiring">0</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white rounded-xl p-5 border border-slate-100 shadow-sm flex items-center justify-between">
+                        <div
+                            class="bg-white rounded-xl p-5 border border-slate-100 shadow-sm flex items-center justify-between">
                             <div class="flex items-center gap-3">
-                                <div class="p-3 bg-amber-50 text-amber-500 rounded-lg"><i class="fa-solid fa-screwdriver-wrench text-xl"></i></div>
+                                <div class="p-3 bg-amber-50 text-amber-500 rounded-lg"><i
+                                        class="fa-solid fa-screwdriver-wrench text-xl"></i></div>
                                 <div>
                                     <p class="text-xs text-slate-500 font-medium">Maintenance Due</p>
                                     <p class="text-xl font-bold text-slate-800" id="dash-maintenance-due">0</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white rounded-xl p-5 border border-slate-100 shadow-sm flex items-center justify-between col-span-2 lg:col-span-1">
+                        <div
+                            class="bg-white rounded-xl p-5 border border-slate-100 shadow-sm flex items-center justify-between col-span-2 lg:col-span-1">
                             <div class="flex items-center gap-3">
-                                <div class="p-3 bg-indigo-50 text-indigo-500 rounded-lg"><i class="fa-solid fa-coins text-xl"></i></div>
+                                <div class="p-3 bg-indigo-50 text-indigo-500 rounded-lg"><i
+                                        class="fa-solid fa-coins text-xl"></i></div>
                                 <div>
                                     <p class="text-xs text-slate-500 font-medium">Total Expenses (AED)</p>
                                     <p class="text-xl font-bold text-slate-800" id="dash-total-expenses">0.00</p>
@@ -778,14 +1006,16 @@
                             </div>
                         </div>
 
-                        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between">
+                        <div
+                            class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between">
                             <div>
                                 <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
                                     <i class="fa-solid fa-circle-exclamation text-slate-500"></i> Quick Critical Alert
                                 </h3>
                                 <div id="dashboard-critical-warnings" class="space-y-3"></div>
                             </div>
-                            <div class="pt-4 border-t border-slate-100 mt-4 flex justify-between text-xs text-slate-400">
+                            <div
+                                class="pt-4 border-t border-slate-100 mt-4 flex justify-between text-xs text-slate-400">
                                 <span>Updates automatically</span>
                                 <span>Realtime</span>
                             </div>
@@ -799,63 +1029,111 @@
                             <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                                 <i class="fa-solid fa-building text-slate-600"></i> Company Profile & Setup
                             </h2>
-                            <button id="save-company-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg transition-colors shadow">
+                            <button id="save-company-btn"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg transition-colors shadow">
                                 Save Profile Changes
                             </button>
                         </div>
                         <div class="p-6">
                             <form id="company-profile-form" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Company Name (English)</label>
-                                    <input type="text" name="companyName" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Company
+                                        Name (English)</label>
+                                    <input type="text" name="companyName"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Trade Licence Number</label>
-                                    <input type="text" name="tradeLicence" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Trade
+                                        Licence Number</label>
+                                    <input type="text" name="tradeLicence"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Unified Licence Number</label>
-                                    <input type="text" name="unifiedLicence" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Unified
+                                        Licence Number</label>
+                                    <input type="text" name="unifiedLicence"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Registration Number</label>
-                                    <input type="text" name="registrationNum" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Registration
+                                        Number</label>
+                                    <input type="text" name="registrationNum"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Owner Name</label>
-                                    <input type="text" name="ownerName" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Owner
+                                        Name</label>
+                                    <input type="text" name="ownerName"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Manager Name</label>
-                                    <input type="text" name="managerName" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Manager
+                                        Name</label>
+                                    <input type="text" name="managerName"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Official Mobile</label>
-                                    <input type="text" name="officialMobile" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Official
+                                        Mobile</label>
+                                    <input type="text" name="officialMobile"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Official Email</label>
-                                    <input type="email" name="officialEmail" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Official
+                                        Email</label>
+                                    <input type="email" name="officialEmail"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Address Location</label>
-                                    <input type="text" name="address" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Address
+                                        Location</label>
+                                    <input type="text" name="address"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Licence Issue Date</label>
-                                    <input type="date" name="licenceIssue" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Licence
+                                        Issue Date</label>
+                                    <input type="date" name="licenceIssue"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Licence Expiry Date</label>
-                                    <input type="date" name="licenceExpiry" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Licence
+                                        Expiry Date</label>
+                                    <input type="date" name="licenceExpiry"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Business Activities</label>
-                                    <input type="text" name="activities" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="e.g. Animal Transport, Light Trucks">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Business
+                                        Activities</label>
+                                    <input type="text" name="activities"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        placeholder="e.g. Animal Transport, Light Trucks">
                                 </div>
                                 <div class="md:col-span-3">
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Additional Information / Notes</label>
-                                    <textarea name="notes" rows="3" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Additional
+                                        Information / Notes</label>
+                                    <textarea name="notes" rows="3"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
                                 </div>
                             </form>
                         </div>
@@ -864,32 +1142,44 @@
                     <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden mt-6">
                         <div class="p-6 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
                             <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                                <i class="fa-solid fa-folder-tree text-slate-600"></i> Corporate Directory (Multi-Branch Catalog)
+                                <i class="fa-solid fa-folder-tree text-slate-600"></i> Corporate Directory (Multi-Branch
+                                Catalog)
                             </h2>
                         </div>
                         <div class="p-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm" id="branches-catalog-container"></div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm"
+                                id="branches-catalog-container"></div>
                         </div>
                     </div>
 
                     <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden mt-6">
                         <div class="p-6 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
                             <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                                <i class="fa-solid fa-code-branch text-slate-600"></i> Register New Corporate Branch / Company
+                                <i class="fa-solid fa-code-branch text-slate-600"></i> Register New Corporate Branch /
+                                Company
                             </h2>
-                            <button id="add-branch-btn" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg transition-colors shadow">
+                            <button id="add-branch-btn"
+                                class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg transition-colors shadow">
                                 Create Branch
                             </button>
                         </div>
                         <div class="p-6">
                             <form id="new-branch-form" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Company / Branch Name</label>
-                                    <input type="text" id="new-branch-name" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:outline-none" placeholder="e.g. Wadi Al Raihan Transport - Fujairah Branch" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Company
+                                        / Branch Name</label>
+                                    <input type="text" id="new-branch-name"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:outline-none"
+                                        placeholder="e.g. Wadi Al Raihan Transport - Fujairah Branch" required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Official Mobile</label>
-                                    <input type="text" id="new-branch-mobile" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:outline-none" placeholder="e.g. 0501234567" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Official
+                                        Mobile</label>
+                                    <input type="text" id="new-branch-mobile"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:outline-none"
+                                        placeholder="e.g. 0501234567" required>
                                 </div>
                             </form>
                         </div>
@@ -900,14 +1190,17 @@
                             <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                                 <i class="fa-solid fa-palette text-slate-600"></i> Dynamic UI Theme Customizer
                             </h2>
-                            <button id="save-theme-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg transition-colors shadow">
+                            <button id="save-theme-btn"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg transition-colors shadow">
                                 Save Theme Settings
                             </button>
                         </div>
                         <div class="p-6">
                             <form id="theme-settings-form" class="grid grid-cols-1 md:grid-cols-4 gap-6">
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Font Family</label>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Font
+                                        Family</label>
                                     <select name="fontFamily" class="w-full border rounded-lg focus:outline-none">
                                         <option value="'Inter', sans-serif">Inter</option>
                                         <option value="'Outfit', sans-serif">Outfit</option>
@@ -915,7 +1208,9 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Font Size (Base)</label>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Font
+                                        Size (Base)</label>
                                     <select name="fontSize" class="w-full border rounded-lg focus:outline-none">
                                         <option value="14px">Small (14px)</option>
                                         <option value="16px">Normal (16px)</option>
@@ -923,28 +1218,46 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Theme Accent Color</label>
-                                    <input type="color" name="accentColor" class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Theme
+                                        Accent Color</label>
+                                    <input type="color" name="accentColor"
+                                        class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Header Background</label>
-                                    <input type="color" name="headerBg" class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Header
+                                        Background</label>
+                                    <input type="color" name="headerBg"
+                                        class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Header Text Color</label>
-                                    <input type="color" name="headerText" class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Header
+                                        Text Color</label>
+                                    <input type="color" name="headerText"
+                                        class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Sidebar Background</label>
-                                    <input type="color" name="sidebarBg" class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Sidebar
+                                        Background</label>
+                                    <input type="color" name="sidebarBg"
+                                        class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Sidebar Text Color</label>
-                                    <input type="color" name="sidebarText" class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Sidebar
+                                        Text Color</label>
+                                    <input type="color" name="sidebarText"
+                                        class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Footer Background</label>
-                                    <input type="color" name="footerBg" class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Footer
+                                        Background</label>
+                                    <input type="color" name="footerBg"
+                                        class="w-full h-10 border border-slate-200 rounded-lg cursor-pointer">
                                 </div>
                             </form>
                         </div>
@@ -955,23 +1268,36 @@
                             <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                                 <i class="fa-solid fa-lock text-slate-600"></i> Change Account Password
                             </h2>
-                            <button id="save-password-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg transition-colors shadow">
+                            <button id="save-password-btn"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg transition-colors shadow">
                                 Change Password
                             </button>
                         </div>
                         <div class="p-6">
                             <form id="change-password-form" class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Current Password</label>
-                                    <input type="password" name="currentPassword" id="change-curr-pass" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Current
+                                        Password</label>
+                                    <input type="password" name="currentPassword" id="change-curr-pass"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">New Password (Min 8 chars, 1 symbol)</label>
-                                    <input type="password" name="newPassword" id="change-new-pass" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">New
+                                        Password (Min 8 chars, 1 symbol)</label>
+                                    <input type="password" name="newPassword" id="change-new-pass"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Confirm New Password</label>
-                                    <input type="password" name="confirmNewPassword" id="change-conf-pass" class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                                    <label
+                                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Confirm
+                                        New Password</label>
+                                    <input type="password" name="confirmNewPassword" id="change-conf-pass"
+                                        class="w-full px-4 py-2 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        required>
                                 </div>
                             </form>
                         </div>
@@ -983,7 +1309,8 @@
                         <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                             <i class="fa-solid fa-truck text-slate-600"></i> Vehicle Management
                         </h2>
-                        <button id="add-vehicle-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
+                        <button id="add-vehicle-btn"
+                            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
                             <i class="fa-solid fa-plus"></i> Add New Vehicle
                         </button>
                     </div>
@@ -1016,7 +1343,8 @@
                         <div class="w-full overflow-x-auto">
                             <table id="vehicles-table" class="w-full border-collapse">
                                 <thead>
-                                    <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
+                                    <tr
+                                        class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
                                         <th class="p-4">Internal Code</th>
                                         <th class="p-4">Plate No.</th>
                                         <th class="p-4">Type</th>
@@ -1036,21 +1364,25 @@
                 <section id="page-vehicle-detail" class="app-page space-y-6 hidden">
                     <div class="flex flex-wrap items-center justify-between gap-4">
                         <div class="flex items-center gap-3">
-                            <a href="#/vehicles" class="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition-colors">
+                            <a href="#/vehicles"
+                                class="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition-colors">
                                 <i class="fa-solid fa-arrow-left"></i>
                             </a>
                             <div>
-                                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2" id="detail-plate-title">
+                                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2"
+                                    id="detail-plate-title">
                                     Vehicle Detail
                                 </h2>
                                 <p class="text-xs text-slate-500" id="detail-internal-code"></p>
                             </div>
                         </div>
                         <div class="flex gap-2 no-print">
-                            <button id="print-vehicle-report-btn" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors">
+                            <button id="print-vehicle-report-btn"
+                                class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors">
                                 <i class="fa-solid fa-print"></i> Print Vehicle Report
                             </button>
-                            <button id="add-detail-history-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
+                            <button id="add-detail-history-btn"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
                                 <i class="fa-solid fa-clock-rotate-left"></i> Log Event
                             </button>
                         </div>
@@ -1059,7 +1391,8 @@
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="lg:col-span-2 space-y-6">
                             <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
-                                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">Specification & Diagnostics</h3>
+                                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">
+                                    Specification & Diagnostics</h3>
                                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                                     <div>
                                         <p class="text-xs text-slate-400 font-medium">Registration Emirate</p>
@@ -1079,11 +1412,13 @@
                                     </div>
                                     <div>
                                         <p class="text-xs text-slate-400 font-medium">Chassis Number</p>
-                                        <p class="font-mono font-semibold text-slate-800 mt-0.5" id="detail-chassis">-</p>
+                                        <p class="font-mono font-semibold text-slate-800 mt-0.5" id="detail-chassis">-
+                                        </p>
                                     </div>
                                     <div>
                                         <p class="text-xs text-slate-400 font-medium">Engine Number</p>
-                                        <p class="font-mono font-semibold text-slate-800 mt-0.5" id="detail-engine">-</p>
+                                        <p class="font-mono font-semibold text-slate-800 mt-0.5" id="detail-engine">-
+                                        </p>
                                     </div>
                                     <div>
                                         <p class="text-xs text-slate-400 font-medium">Fuel Type</p>
@@ -1116,7 +1451,8 @@
                                 <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-4">
                                     <h3 class="text-base font-bold text-slate-800">Operational Log Timeline</h3>
                                     <div class="flex gap-2">
-                                        <select id="detail-history-filter-type" class="text-xs border rounded px-2 py-1 focus:outline-none">
+                                        <select id="detail-history-filter-type"
+                                            class="text-xs border rounded px-2 py-1 focus:outline-none">
                                             <option value="">All Events</option>
                                             <option value="Maintenance">Maintenance</option>
                                             <option value="Repair">Repair</option>
@@ -1134,12 +1470,14 @@
 
                         <div class="space-y-6">
                             <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
-                                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">Document Expiring Status</h3>
+                                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">
+                                    Document Expiring Status</h3>
                                 <div class="space-y-4" id="detail-document-expiry-badges"></div>
                             </div>
 
                             <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
-                                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">Policy & Permits</h3>
+                                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">
+                                    Policy & Permits</h3>
                                 <div class="space-y-3 text-sm">
                                     <div>
                                         <p class="text-xs text-slate-400 font-medium">Insurance Partner</p>
@@ -1168,7 +1506,8 @@
                         <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                             <i class="fa-solid fa-users text-slate-600"></i> Driver Roster
                         </h2>
-                        <button id="add-driver-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
+                        <button id="add-driver-btn"
+                            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
                             <i class="fa-solid fa-plus"></i> Add New Driver
                         </button>
                     </div>
@@ -1177,7 +1516,8 @@
                         <div class="w-full overflow-x-auto">
                             <table id="drivers-table" class="w-full border-collapse">
                                 <thead>
-                                    <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
+                                    <tr
+                                        class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
                                         <th class="p-4">Driver Name</th>
                                         <th class="p-4">Mobile No.</th>
                                         <th class="p-4">Emirates ID</th>
@@ -1199,7 +1539,8 @@
                         <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                             <i class="fa-solid fa-screwdriver-wrench text-slate-600"></i> Fleet Maintenance Scheduling
                         </h2>
-                        <button id="add-maintenance-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
+                        <button id="add-maintenance-btn"
+                            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
                             <i class="fa-solid fa-plus"></i> Book Maintenance
                         </button>
                     </div>
@@ -1208,7 +1549,8 @@
                         <div class="w-full overflow-x-auto">
                             <table id="maintenance-table" class="w-full border-collapse">
                                 <thead>
-                                    <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
+                                    <tr
+                                        class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
                                         <th class="p-4">Vehicle</th>
                                         <th class="p-4">Task Category</th>
                                         <th class="p-4">Workshop</th>
@@ -1230,7 +1572,8 @@
                         <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                             <i class="fa-solid fa-circle-exclamation text-slate-600"></i> Violations & Traffic Fines
                         </h2>
-                        <button id="add-fine-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
+                        <button id="add-fine-btn"
+                            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
                             <i class="fa-solid fa-plus"></i> Record Traffic Fine
                         </button>
                     </div>
@@ -1239,7 +1582,8 @@
                         <div class="w-full overflow-x-auto">
                             <table id="fines-table" class="w-full border-collapse">
                                 <thead>
-                                    <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
+                                    <tr
+                                        class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
                                         <th class="p-4">Ticket No.</th>
                                         <th class="p-4">Vehicle</th>
                                         <th class="p-4">Driver</th>
@@ -1264,7 +1608,8 @@
                         <div class="w-full overflow-x-auto">
                             <table id="expiries-table" class="w-full border-collapse">
                                 <thead>
-                                    <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
+                                    <tr
+                                        class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase tracking-wider border-b border-slate-100">
                                         <th class="p-4">Document / Resource Name</th>
                                         <th class="p-4">Context / Link</th>
                                         <th class="p-4">Expiration Date</th>
@@ -1284,19 +1629,24 @@
                             <i class="fa-solid fa-file-invoice-dollar text-blue-600"></i> Corporate Insights & Reporting
                         </h2>
                         <div class="flex items-center gap-2 flex-wrap">
-                            <button id="report-print-btn" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-all shadow">
+                            <button id="report-print-btn"
+                                class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-all shadow">
                                 <i class="fa-solid fa-print"></i> Print Executive Report
                             </button>
-                            <button id="report-csv-btn" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-all shadow">
+                            <button id="report-csv-btn"
+                                class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-all shadow">
                                 <i class="fa-solid fa-file-csv"></i> Export CSV
                             </button>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                    <div
+                        class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Insights Category</label>
-                            <select id="report-module" class="w-full border rounded-lg focus:outline-none py-2 px-3 text-xs bg-slate-50 border-slate-200">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Insights
+                                Category</label>
+                            <select id="report-module"
+                                class="w-full border rounded-lg focus:outline-none py-2 px-3 text-xs bg-slate-50 border-slate-200">
                                 <option value="dashboard">Executive Summary & Charts</option>
                                 <option value="vehicles">Fleet Inventory & Utilization</option>
                                 <option value="maintenance">Maintenance Service & Costs</option>
@@ -1306,29 +1656,41 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Start Date</label>
-                            <input type="date" id="report-start-date" class="w-full border rounded-lg focus:outline-none py-1.5 px-3 text-xs bg-slate-50 border-slate-200">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Start
+                                Date</label>
+                            <input type="date" id="report-start-date"
+                                class="w-full border rounded-lg focus:outline-none py-1.5 px-3 text-xs bg-slate-50 border-slate-200">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">End Date</label>
-                            <input type="date" id="report-end-date" class="w-full border rounded-lg focus:outline-none py-1.5 px-3 text-xs bg-slate-50 border-slate-200">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">End
+                                Date</label>
+                            <input type="date" id="report-end-date"
+                                class="w-full border rounded-lg focus:outline-none py-1.5 px-3 text-xs bg-slate-50 border-slate-200">
                         </div>
                         <div class="flex gap-2">
-                            <button id="report-apply-filters" class="flex-grow py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors shadow">Apply Filters</button>
-                            <button id="report-reset-filters" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg transition-colors border">Reset</button>
+                            <button id="report-apply-filters"
+                                class="flex-grow py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors shadow">Apply
+                                Filters</button>
+                            <button id="report-reset-filters"
+                                class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg transition-colors border">Reset</button>
                         </div>
                     </div>
 
                     <div id="report-cards-container" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
 
-                    <div id="report-charts-panel" class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+                    <div id="report-charts-panel"
+                        class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
                         <div class="h-64 flex flex-col justify-between">
-                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2" id="chart-left-title">Financial Distribution</h4>
-                            <div class="relative flex-grow h-full max-h-[220px]"><canvas id="report-chart-left"></canvas></div>
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2"
+                                id="chart-left-title">Financial Distribution</h4>
+                            <div class="relative flex-grow h-full max-h-[220px]"><canvas
+                                    id="report-chart-left"></canvas></div>
                         </div>
                         <div class="h-64 flex flex-col justify-between">
-                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2" id="chart-right-title">Monthly Outlay Trend</h4>
-                            <div class="relative flex-grow h-full max-h-[220px]"><canvas id="report-chart-right"></canvas></div>
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2"
+                                id="chart-right-title">Monthly Outlay Trend</h4>
+                            <div class="relative flex-grow h-full max-h-[220px]"><canvas
+                                    id="report-chart-right"></canvas></div>
                         </div>
                     </div>
 
@@ -1348,78 +1710,105 @@
                         <i class="fa-solid fa-database text-slate-600"></i> Corporate Ledger Backup & Restore
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between">
+                        <div
+                            class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between">
                             <div>
                                 <h3 class="text-base font-bold text-slate-800 mb-2">Export Data Archive</h3>
-                                <p class="text-sm text-slate-500 mb-4">Securely package the entire IndexedDB data schema, including settings and logs, into a structured JSON file. Ensure you perform regular offline exports.</p>
+                                <p class="text-sm text-slate-500 mb-4">Securely package the entire IndexedDB data
+                                    schema, including settings and logs, into a structured JSON file. Ensure you perform
+                                    regular offline exports.</p>
                             </div>
-                            <button id="backup-export-btn" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">
+                            <button id="backup-export-btn"
+                                class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">
                                 <i class="fa-solid fa-download mr-1"></i> Generate & Download Backup JSON
                             </button>
                         </div>
 
-                        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between">
+                        <div
+                            class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between">
                             <div>
                                 <h3 class="text-base font-bold text-slate-800 mb-2">Restore Data Archive</h3>
-                                <p class="text-sm text-slate-500 mb-4">Load a previously generated Wadi Al Raihan transport JSON backup. This handles automated record validation and safely merges non-duplicate entries.</p>
+                                <p class="text-sm text-slate-500 mb-4">Load a previously generated Wadi Al Raihan
+                                    transport JSON backup. This handles automated record validation and safely merges
+                                    non-duplicate entries.</p>
                             </div>
                             <div class="space-y-3">
                                 <input type="file" id="backup-import-file" class="hidden" accept=".json">
-                                <button id="backup-import-trigger" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors shadow">
+                                <button id="backup-import-trigger"
+                                    class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors shadow">
                                     <i class="fa-solid fa-upload mr-1"></i> Upload & Import Backup JSON
                                 </button>
                             </div>
                         </div>
 
-                        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between border-l-4 border-blue-500">
+                        <div
+                            class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between border-l-4 border-blue-500">
                             <div>
                                 <h3 class="text-base font-bold text-slate-800 mb-2">Seed Sample Data</h3>
-                                <p class="text-sm text-slate-500 mb-4">Populate the company ledger with realistic sample vehicles, drivers, traffic violations, and scheduled maintenance. This will overwrite or merge with existing operational records.</p>
+                                <p class="text-sm text-slate-500 mb-4">Populate the company ledger with realistic sample
+                                    vehicles, drivers, traffic violations, and scheduled maintenance. This will
+                                    overwrite or merge with existing operational records.</p>
                             </div>
-                            <button id="load-sample-data-btn" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">
+                            <button id="load-sample-data-btn"
+                                class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">
                                 <i class="fa-solid fa-truck-ramp-box mr-1"></i> Load Sample Data Archive
                             </button>
                         </div>
 
-                        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between border-l-4 border-purple-500">
+                        <div
+                            class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between border-l-4 border-purple-500">
                             <div>
                                 <h3 class="text-base font-bold text-slate-800 mb-2">Automated Daily Backup</h3>
-                                <p class="text-sm text-slate-500 mb-4">Set a specific time for the system to automatically prompt and package your database. Requires the app to be open.</p>
+                                <p class="text-sm text-slate-500 mb-4">Set a specific time for the system to
+                                    automatically prompt and package your database. Requires the app to be open.</p>
                             </div>
                             <form id="auto-backup-form" class="space-y-3">
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm font-semibold text-slate-700">Enable Auto-Backup</span>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" id="auto-backup-toggle" class="sr-only peer">
-                                        <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                        <div
+                                            class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600">
+                                        </div>
                                     </label>
                                 </div>
                                 <div class="flex items-center justify-between gap-4">
                                     <span class="text-sm font-semibold text-slate-700">Scheduled Time</span>
-                                    <input type="time" id="auto-backup-time" class="px-3 py-1.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500" value="18:00">
+                                    <input type="time" id="auto-backup-time"
+                                        class="px-3 py-1.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                        value="18:00">
                                 </div>
-                                <button type="submit" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors shadow text-sm">
+                                <button type="submit"
+                                    class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors shadow text-sm">
                                     Update Schedule Settings
                                 </button>
                             </form>
                         </div>
 
-                        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between border-l-4 border-amber-500">
+                        <div
+                            class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between border-l-4 border-amber-500">
                             <div>
                                 <h3 class="text-base font-bold text-slate-800 mb-2">Start Fresh</h3>
-                                <p class="text-sm text-slate-500 mb-4">Erase all sample fleet data, vehicles, drivers, fines, histories, and maintenance records, while keeping your current login credentials and company profiles intact.</p>
+                                <p class="text-sm text-slate-500 mb-4">Erase all sample fleet data, vehicles, drivers,
+                                    fines, histories, and maintenance records, while keeping your current login
+                                    credentials and company profiles intact.</p>
                             </div>
-                            <button id="start-fresh-btn" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors shadow">
+                            <button id="start-fresh-btn"
+                                class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors shadow">
                                 <i class="fa-solid fa-broom mr-1"></i> Start Fresh (Clear Operational Data)
                             </button>
                         </div>
 
-                        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between border-l-4 border-rose-500">
+                        <div
+                            class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 flex flex-col justify-between border-l-4 border-rose-500">
                             <div>
                                 <h3 class="text-base font-bold text-slate-800 mb-2">System Reset</h3>
-                                <p class="text-sm text-slate-500 mb-4">Permanently erase the offline storage context. This clears the vehicles, drivers, fines, histories, maintenance rosters, and company profile records. <strong>Action cannot be undone.</strong></p>
+                                <p class="text-sm text-slate-500 mb-4">Permanently erase the offline storage context.
+                                    This clears the vehicles, drivers, fines, histories, maintenance rosters, and
+                                    company profile records. <strong>Action cannot be undone.</strong></p>
                             </div>
-                            <button id="system-clear-btn" class="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white font-semibold rounded-lg transition-colors shadow">
+                            <button id="system-clear-btn"
+                                class="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white font-semibold rounded-lg transition-colors shadow">
                                 <i class="fa-solid fa-trash-can mr-1"></i> Reset Offline Storage
                             </button>
                         </div>
@@ -1428,15 +1817,18 @@
 
             </main>
 
-            <footer class="bg-white border-t border-slate-100 py-4 px-6 text-center text-xs text-slate-500 no-print flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+            <footer
+                class="bg-white border-t border-slate-100 py-4 px-6 text-center text-xs text-slate-500 no-print flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <div>
                     Created by: <span class="font-semibold text-slate-700">Yasin Ullah – Bannu Software Solutions</span>
                 </div>
                 <div class="flex items-center justify-center gap-4">
-                    <a href="https://www.yasinbss.com" target="_blank" class="hover:text-blue-600 transition-colors font-medium flex items-center gap-1">
+                    <a href="https://www.yasinbss.com" target="_blank"
+                        class="hover:text-blue-600 transition-colors font-medium flex items-center gap-1">
                         <i class="fa-solid fa-globe"></i> https://www.yasinbss.com
                     </a>
-                    <a href="https://wa.me/923361593533" target="_blank" class="hover:text-emerald-600 transition-colors font-medium flex items-center gap-1">
+                    <a href="https://wa.me/923361593533" target="_blank"
+                        class="hover:text-emerald-600 transition-colors font-medium flex items-center gap-1">
                         <i class="fa-brands fa-whatsapp text-sm"></i> 03361593533
                     </a>
                 </div>
@@ -1444,25 +1836,33 @@
         </div>
     </div>
 
-    <div id="vehicle-modal" class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
+    <div id="vehicle-modal"
+        class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
         <div class="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
                 <h3 class="text-base font-bold text-slate-800" id="vehicle-modal-title">Create Fleet Vehicle</h3>
-                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i
+                        class="fa-solid fa-xmark"></i></button>
             </div>
             <form id="vehicle-form" class="p-6 space-y-6">
                 <input type="hidden" name="id">
                 <div id="vehicle-branch-select-wrapper" class="hidden text-sm border-b border-slate-100 pb-4">
-                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Corporate Branch / Company</label>
-                    <select name="branchId" id="vehicle-branch-select" class="w-full border rounded-lg focus:outline-none"></select>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Corporate Branch
+                        / Company</label>
+                    <select name="branchId" id="vehicle-branch-select"
+                        class="w-full border rounded-lg focus:outline-none"></select>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Plate Number</label>
-                        <input type="text" name="plateNumber" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Plate
+                            Number</label>
+                        <input type="text" name="plateNumber"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Registration Emirate</label>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Registration
+                            Emirate</label>
                         <select name="emirate" class="w-full border rounded-lg focus:outline-none" required>
                             <option value="Abu Dhabi">Abu Dhabi</option>
                             <option value="Dubai">Dubai</option>
@@ -1474,7 +1874,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Vehicle Category</label>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Vehicle
+                            Category</label>
                         <select name="vehicleType" class="w-full border rounded-lg focus:outline-none" required>
                             <option value="Light Truck">Light Truck</option>
                             <option value="Heavy Truck">Heavy Truck</option>
@@ -1484,35 +1885,53 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Internal Code</label>
-                        <input type="text" name="internalCode" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Internal
+                            Code</label>
+                        <input type="text" name="internalCode"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Make / Brand</label>
-                        <input type="text" name="brand" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Make /
+                            Brand</label>
+                        <input type="text" name="brand"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Model Name</label>
-                        <input type="text" name="model" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Model
+                            Name</label>
+                        <input type="text" name="model"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Manufacturing Year</label>
-                        <input type="number" name="year" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="1980" max="2030" required>
+                        <label
+                            class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Manufacturing
+                            Year</label>
+                        <input type="number" name="year"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="1980"
+                            max="2030" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Body Color</label>
-                        <input type="text" name="color" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Body
+                            Color</label>
+                        <input type="text" name="color"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Chassis Serial (17 Chars)</label>
-                        <input type="text" name="chassisNumber" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Chassis
+                            Serial (17 Chars)</label>
+                        <input type="text" name="chassisNumber"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Engine Number</label>
-                        <input type="text" name="engineNumber" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Engine
+                            Number</label>
+                        <input type="text" name="engineNumber"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Fuel Type</label>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Fuel
+                            Type</label>
                         <select name="fuelType" class="w-full border rounded-lg focus:outline-none">
                             <option value="Diesel">Diesel</option>
                             <option value="Petrol">Petrol</option>
@@ -1521,19 +1940,27 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Current Odometer (KM)</label>
-                        <input type="number" name="odometer" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Current
+                            Odometer (KM)</label>
+                        <input type="number" name="odometer"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0"
+                            required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Assigned Driver</label>
-                        <select name="assignedDriver" id="vehicle-driver-select" class="w-full border rounded-lg focus:outline-none"></select>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Assigned
+                            Driver</label>
+                        <select name="assignedDriver" id="vehicle-driver-select"
+                            class="w-full border rounded-lg focus:outline-none"></select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Current Location</label>
-                        <input type="text" name="currentLocation" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Current
+                            Location</label>
+                        <input type="text" name="currentLocation"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Fleet Status</label>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Fleet
+                            Status</label>
                         <select name="status" class="w-full border rounded-lg focus:outline-none">
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
@@ -1542,84 +1969,120 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Registration Issue Date</label>
-                        <input type="date" name="regIssue" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Registration
+                            Issue Date</label>
+                        <input type="date" name="regIssue"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Registration Expiry Date</label>
-                        <input type="date" name="regExpiry" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Registration
+                            Expiry Date</label>
+                        <input type="date" name="regExpiry"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Insurance Company Name</label>
-                        <input type="text" name="insuranceCompany" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Insurance
+                            Company Name</label>
+                        <input type="text" name="insuranceCompany"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Insurance Policy Number</label>
-                        <input type="text" name="insurancePolicy" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Insurance
+                            Policy Number</label>
+                        <input type="text" name="insurancePolicy"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Insurance Expiry Date</label>
-                        <input type="date" name="insuranceExpiry" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Insurance
+                            Expiry Date</label>
+                        <input type="date" name="insuranceExpiry"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Transport Permit Number</label>
-                        <input type="text" name="permitNumber" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Transport
+                            Permit Number</label>
+                        <input type="text" name="permitNumber"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Permit Expiry Date</label>
-                        <input type="date" name="permitExpiry" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Permit
+                            Expiry Date</label>
+                        <input type="date" name="permitExpiry"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
                     </div>
                 </div>
                 <div class="text-sm">
-                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Operational Comments</label>
-                    <textarea name="notes" rows="2" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"></textarea>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Operational
+                        Comments</label>
+                    <textarea name="notes" rows="2"
+                        class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"></textarea>
                 </div>
                 <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                    <button type="button" class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
-                    <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Save Vehicle</button>
+                    <button type="button"
+                        class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Save
+                        Vehicle</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="driver-modal" class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
+    <div id="driver-modal"
+        class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
         <div class="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
                 <h3 class="text-base font-bold text-slate-800" id="driver-modal-title">Register Driver</h3>
-                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i
+                        class="fa-solid fa-xmark"></i></button>
             </div>
             <form id="driver-form" class="p-6 space-y-4">
                 <input type="hidden" name="id">
                 <div class="text-sm space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Full Driver Name</label>
-                        <input type="text" name="name" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Full Driver
+                            Name</label>
+                        <input type="text" name="name"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Mobile Contact No.</label>
-                        <input type="text" name="mobile" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Mobile
+                            Contact No.</label>
+                        <input type="text" name="mobile"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Emirates ID Sequence</label>
-                        <input type="text" name="emiratesId" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" placeholder="e.g. 784-YYYY-XXXXXXX-Z" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Emirates ID
+                            Sequence</label>
+                        <input type="text" name="emiratesId"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"
+                            placeholder="e.g. 784-YYYY-XXXXXXX-Z" required>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Licence ID</label>
-                            <input type="text" name="licenceNumber" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Licence
+                                ID</label>
+                            <input type="text" name="licenceNumber"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Licence Expiry</label>
-                            <input type="date" name="licenceExpiry" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Licence
+                                Expiry</label>
+                            <input type="date" name="licenceExpiry"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Assigned Vehicle</label>
-                            <select name="assignedVehicle" id="driver-vehicle-select" class="w-full border rounded-lg focus:outline-none"></select>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Assigned
+                                Vehicle</label>
+                            <select name="assignedVehicle" id="driver-vehicle-select"
+                                class="w-full border rounded-lg focus:outline-none"></select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Employment Status</label>
+                            <label
+                                class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Employment
+                                Status</label>
                             <select name="status" class="w-full border rounded-lg focus:outline-none">
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
@@ -1627,66 +2090,95 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Internal Notes</label>
-                        <textarea name="notes" rows="2" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"></textarea>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Internal
+                            Notes</label>
+                        <textarea name="notes" rows="2"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"></textarea>
                     </div>
                 </div>
                 <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                    <button type="button" class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
-                    <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Save Driver</button>
+                    <button type="button"
+                        class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Save
+                        Driver</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="maintenance-modal" class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
+    <div id="maintenance-modal"
+        class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
         <div class="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-                <h3 class="text-base font-bold text-slate-800" id="maintenance-modal-title">Book Maintenance Service</h3>
-                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+                <h3 class="text-base font-bold text-slate-800" id="maintenance-modal-title">Book Maintenance Service
+                </h3>
+                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i
+                        class="fa-solid fa-xmark"></i></button>
             </div>
             <form id="maintenance-form" class="p-6 space-y-4">
                 <input type="hidden" name="id">
                 <div class="text-sm space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Fleet Vehicle</label>
-                        <select name="vehicleId" id="maintenance-vehicle-select" class="w-full border rounded-lg focus:outline-none" required></select>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Fleet
+                            Vehicle</label>
+                        <select name="vehicleId" id="maintenance-vehicle-select"
+                            class="w-full border rounded-lg focus:outline-none" required></select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Task Category / Type</label>
-                        <input type="text" name="maintenanceType" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" placeholder="e.g. Engine Oil Flush, Tire Swaps" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Task
+                            Category / Type</label>
+                        <input type="text" name="maintenanceType"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"
+                            placeholder="e.g. Engine Oil Flush, Tire Swaps" required>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Service Date</label>
-                            <input type="date" name="serviceDate" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Service
+                                Date</label>
+                            <input type="date" name="serviceDate"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Next Service Due</label>
-                            <input type="date" name="nextServiceDate" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Next
+                                Service Due</label>
+                            <input type="date" name="nextServiceDate"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Odometer Mileage (KM)</label>
-                            <input type="number" name="odometer" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0" required>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Odometer
+                                Mileage (KM)</label>
+                            <input type="number" name="odometer"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0"
+                                required>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Total Cost (AED)</label>
-                            <input type="number" name="cost" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0" step="0.01" required>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Total
+                                Cost (AED)</label>
+                            <input type="number" name="cost"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0"
+                                step="0.01" required>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Contractor / Workshop Name</label>
-                        <input type="text" name="workshopName" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Contractor /
+                            Workshop Name</label>
+                        <input type="text" name="workshopName"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Parts & Spares Replaced</label>
-                        <input type="text" name="partsReplaced" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" placeholder="Comma separated list">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Parts &
+                            Spares Replaced</label>
+                        <input type="text" name="partsReplaced"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"
+                            placeholder="Comma separated list">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Workflow Status</label>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Workflow
+                                Status</label>
                             <select name="status" class="w-full border rounded-lg focus:outline-none">
                                 <option value="Completed">Completed</option>
                                 <option value="Pending">Pending</option>
@@ -1695,44 +2187,61 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Maintenance Comments</label>
-                        <textarea name="notes" rows="2" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"></textarea>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Maintenance
+                            Comments</label>
+                        <textarea name="notes" rows="2"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"></textarea>
                     </div>
                 </div>
                 <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                    <button type="button" class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
-                    <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Save Record</button>
+                    <button type="button"
+                        class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Save
+                        Record</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="fine-modal" class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
+    <div id="fine-modal"
+        class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
         <div class="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
                 <h3 class="text-base font-bold text-slate-800" id="fine-modal-title">Record Violation Ticket</h3>
-                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i
+                        class="fa-solid fa-xmark"></i></button>
             </div>
             <form id="fine-form" class="p-6 space-y-4">
                 <input type="hidden" name="id">
                 <div class="text-sm space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Violating Vehicle</label>
-                            <select name="vehicleId" id="fine-vehicle-select" class="w-full border rounded-lg focus:outline-none" required></select>
+                            <label
+                                class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Violating
+                                Vehicle</label>
+                            <select name="vehicleId" id="fine-vehicle-select"
+                                class="w-full border rounded-lg focus:outline-none" required></select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Offending Driver</label>
-                            <select name="driverId" id="fine-driver-select" class="w-full border rounded-lg focus:outline-none" required></select>
+                            <label
+                                class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Offending
+                                Driver</label>
+                            <select name="driverId" id="fine-driver-select"
+                                class="w-full border rounded-lg focus:outline-none" required></select>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Violation Ticket No.</label>
-                            <input type="text" name="fineNumber" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                            <label
+                                class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Violation
+                                Ticket No.</label>
+                            <input type="text" name="fineNumber"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Fine Authority</label>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Fine
+                                Authority</label>
                             <select name="authority" class="w-full border rounded-lg focus:outline-none">
                                 <option value="Abu Dhabi Police">Abu Dhabi Police</option>
                                 <option value="Dubai Police">Dubai Police</option>
@@ -1748,17 +2257,24 @@
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Infraction Date</label>
-                            <input type="date" name="fineDate" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                            <label
+                                class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Infraction
+                                Date</label>
+                            <input type="date" name="fineDate"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Penalty Cost (AED)</label>
-                            <input type="number" name="amount" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0" step="0.01" required>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Penalty
+                                Cost (AED)</label>
+                            <input type="number" name="amount"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0"
+                                step="0.01" required>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Ledger Status</label>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Ledger
+                                Status</label>
                             <select name="status" class="w-full border rounded-lg focus:outline-none">
                                 <option value="Unpaid">Unpaid</option>
                                 <option value="Paid">Paid</option>
@@ -1766,38 +2282,52 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Settlement Date</label>
-                            <input type="date" name="paymentDate" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
+                            <label
+                                class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Settlement
+                                Date</label>
+                            <input type="date" name="paymentDate"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Offence Description</label>
-                        <input type="text" name="description" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" placeholder="e.g. Speeding" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Offence
+                            Description</label>
+                        <input type="text" name="description"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"
+                            placeholder="e.g. Speeding" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Internal Notes</label>
-                        <textarea name="notes" rows="2" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"></textarea>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Internal
+                            Notes</label>
+                        <textarea name="notes" rows="2"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"></textarea>
                     </div>
                 </div>
                 <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                    <button type="button" class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
-                    <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Save Ticket</button>
+                    <button type="button"
+                        class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Save
+                        Ticket</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="history-modal" class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
+    <div id="history-modal"
+        class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
         <div class="bg-white rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
                 <h3 class="text-base font-bold text-slate-800">Add Log Event</h3>
-                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl"><i
+                        class="fa-solid fa-xmark"></i></button>
             </div>
             <form id="history-form" class="p-6 space-y-4">
                 <input type="hidden" name="vehicleId">
                 <div class="text-sm space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Event Category</label>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Event
+                            Category</label>
                         <select name="type" class="w-full border rounded-lg focus:outline-none" required>
                             <option value="Maintenance">Maintenance</option>
                             <option value="Repair">Repair</option>
@@ -1813,52 +2343,77 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Headline / Title</label>
-                        <input type="text" name="title" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Headline /
+                            Title</label>
+                        <input type="text" name="title"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Odometer (KM)</label>
-                            <input type="number" name="odometer" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0" required>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Odometer
+                                (KM)</label>
+                            <input type="number" name="odometer"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0"
+                                required>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Expense Cost (AED)</label>
-                            <input type="number" name="cost" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0" step="0.01" required>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Expense
+                                Cost (AED)</label>
+                            <input type="number" name="cost"
+                                class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" min="0"
+                                step="0.01" required>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Event Date</label>
-                        <input type="date" name="date" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Event
+                            Date</label>
+                        <input type="date" name="date"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Detailed Log Description</label>
-                        <textarea name="description" rows="3" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" required></textarea>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Detailed Log
+                            Description</label>
+                        <textarea name="description" rows="3"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"
+                            required></textarea>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Reference Document</label>
-                        <input type="text" name="attachment" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none" placeholder="e.g. receipt.pdf text only">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Reference
+                            Document</label>
+                        <input type="text" name="attachment"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none"
+                            placeholder="e.g. receipt.pdf text only">
                     </div>
                 </div>
                 <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                    <button type="button" class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
-                    <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Record Event</button>
+                    <button type="button"
+                        class="close-modal-btn px-4 py-2 border border-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow">Record
+                        Event</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="details-view-modal" class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
+    <div id="details-view-modal"
+        class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
         <div class="bg-white rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50 sticky top-0 z-10">
                 <div class="flex items-center gap-3">
-                    <span id="details-view-modal-icon-wrapper" class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold"></span>
+                    <span id="details-view-modal-icon-wrapper"
+                        class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold"></span>
                     <h3 class="text-base font-bold text-slate-800" id="details-view-modal-title">Record Details</h3>
                 </div>
                 <div class="flex items-center gap-3">
-                    <button id="details-view-modal-edit-btn" class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors focus:outline-none" title="Edit Record">
+                    <button id="details-view-modal-edit-btn"
+                        class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors focus:outline-none"
+                        title="Edit Record">
                         <i class="fa-solid fa-pen-to-square text-lg"></i>
                     </button>
-                    <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+                    <button type="button"
+                        class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl focus:outline-none"><i
+                            class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
             <div id="details-view-modal-body" class="p-6 space-y-6 text-sm">
@@ -2111,7 +2666,7 @@
                     --main-text: #0f172a;
                 }
             `;
-            
+
             const company = await getRecord('company', activeBranchId);
             if (company && company.licenceExpiry) {
                 const daysLeft = Math.ceil((new Date(company.licenceExpiry) - new Date()) / (1000 * 60 * 60 * 24));
@@ -2143,11 +2698,11 @@
             document.querySelectorAll('table').forEach(table => {
                 const id = table.id;
                 if (!id || id === 'reports-output-table') return;
-                
+
                 if (activeDataTables[id]) {
                     activeDataTables[id].destroy();
                 }
-                
+
                 activeDataTables[id] = $(table).DataTable({
                     responsive: true,
                     pageLength: 50,
@@ -2247,7 +2802,7 @@
 
             document.getElementById('dash-total-vehicles').innerText = v.length;
             document.getElementById('dash-active-vehicles').innerText = v.filter(item => item.status === 'Active').length;
-            
+
             const today = new Date();
             let expiredRegCount = 0;
             let soonInsCount = 0;
@@ -2269,9 +2824,9 @@
             });
 
             const totalFines = f.reduce((acc, curr) => acc + parseFloat(curr.amount || 0), 0);
-            const totalExpenses = f.reduce((acc, curr) => acc + parseFloat(curr.amount || 0), 0) + 
-                                  m.reduce((acc, curr) => acc + parseFloat(curr.cost || 0), 0) +
-                                  h.reduce((acc, curr) => acc + parseFloat(curr.cost || 0), 0);
+            const totalExpenses = f.reduce((acc, curr) => acc + parseFloat(curr.amount || 0), 0) +
+                m.reduce((acc, curr) => acc + parseFloat(curr.cost || 0), 0) +
+                h.reduce((acc, curr) => acc + parseFloat(curr.cost || 0), 0);
 
             document.getElementById('dash-expired-registrations').innerText = expiredRegCount;
             document.getElementById('dash-insurance-expiring').innerText = soonInsCount;
@@ -2281,7 +2836,7 @@
 
             const warningDiv = document.getElementById('dashboard-critical-warnings');
             warningDiv.innerHTML = '';
-            
+
             v.forEach(v => {
                 if (v.regExpiry && new Date(v.regExpiry) < today) {
                     warningDiv.innerHTML += `
@@ -2295,7 +2850,7 @@
 
             const actList = document.getElementById('recent-activity-list');
             actList.innerHTML = '';
-            
+
             const sortedHistory = h.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
             if (sortedHistory.length === 0) {
                 actList.innerHTML = `<li class="text-xs text-slate-400 py-2">No recent logistics events recorded.</li>`;
@@ -2518,7 +3073,7 @@
 
             const docExpDiv = document.getElementById('detail-document-expiry-badges');
             docExpDiv.innerHTML = '';
-            
+
             const today = new Date();
             const expList = [
                 { label: 'Registration Expiry', date: v.regExpiry },
@@ -2809,7 +3364,7 @@
 
         async function showReports() {
             destroyDataTables();
-            
+
             if (reportChartLeftInstance) {
                 reportChartLeftInstance.destroy();
                 reportChartLeftInstance = null;
@@ -3382,17 +3937,17 @@
         function exportTableToCSV(filename) {
             const csv = [];
             const rows = document.querySelectorAll("#reports-output-table tr");
-            
+
             for (let i = 0; i < rows.length; i++) {
                 const row = [], cols = rows[i].querySelectorAll("td, th");
-                
-                for (let j = 0; j < cols.length; j++) 
+
+                for (let j = 0; j < cols.length; j++)
                     row.push('"' + cols[j].innerText.replace(/"/g, '""') + '"');
-                
-                csv.push(row.join(","));        
+
+                csv.push(row.join(","));
             }
 
-            const csvFile = new Blob([csv.join("\n")], {type: "text/csv"});
+            const csvFile = new Blob([csv.join("\n")], { type: "text/csv" });
             const downloadLink = document.createElement("a");
             downloadLink.download = filename;
             downloadLink.href = window.URL.createObjectURL(csvFile);
@@ -3508,7 +4063,7 @@
             const id = parts[2];
 
             document.querySelectorAll('.app-page').forEach(page => page.classList.add('hidden'));
-            
+
             document.querySelectorAll('.nav-link').forEach(link => {
                 const href = link.getAttribute('href').slice(2);
                 if (href === parts[0]) {
@@ -3600,6 +4155,14 @@
                 el.value = data[key];
                 if (el.tagName === 'SELECT' && el.id && tomSelectInstances[el.id]) {
                     tomSelectInstances[el.id].setValue(data[key]);
+                }
+            });
+        }
+
+        function clearFormTomSelects(form) {
+            form.querySelectorAll('select').forEach(select => {
+                if (select.id && tomSelectInstances[select.id]) {
+                    tomSelectInstances[select.id].setValue('');
                 }
             });
         }
@@ -4126,7 +4689,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `wadi_al_raihan_backup_${new Date().toISOString().slice(0,10)}.json`;
+            a.download = `wadi_al_raihan_backup_${new Date().toISOString().slice(0, 10)}.json`;
             a.click();
             URL.revokeObjectURL(url);
             showToast('success', 'Backup exported successfully.');
@@ -4298,7 +4861,7 @@
                 officialEmail: 'info@wadialraihan.ae',
                 address: 'UAE',
                 licenceIssue: new Date().toISOString().substring(0, 10),
-                licenceExpiry: new Date(Date.now() + 365*24*60*60*1000).toISOString().substring(0, 10),
+                licenceExpiry: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10),
                 activities: 'Transport Of Materials',
                 notes: 'New branch operational company profile.'
             };
@@ -4354,6 +4917,7 @@
         document.getElementById('add-vehicle-btn').onclick = async () => {
             const form = document.getElementById('vehicle-form');
             form.reset();
+            clearFormTomSelects(form);
             await setupVehicleBranchSelect();
             form.elements['id'].value = 'vh-' + Date.now();
             document.getElementById('vehicle-modal-title').innerText = 'Register Fleet Vehicle';
@@ -4372,10 +4936,10 @@
             if (currentUser.role !== 'Admin') {
                 data.branchId = activeBranchId;
             }
-            
+
             const oldV = await getRecord('vehicles', data.id);
             await updateRecord('vehicles', data);
-            
+
             if (oldV && oldV.assignedDriver !== data.assignedDriver) {
                 if (oldV.assignedDriver) {
                     const oldDr = await getRecord('drivers', oldV.assignedDriver);
@@ -4440,6 +5004,7 @@
         document.getElementById('add-driver-btn').onclick = () => {
             const form = document.getElementById('driver-form');
             form.reset();
+            clearFormTomSelects(form);
             form.elements['id'].value = 'dr-' + Date.now();
             document.getElementById('driver-modal-title').innerText = 'Register Driver';
             document.getElementById('driver-modal').classList.remove('hidden');
@@ -4451,10 +5016,10 @@
             const data = {};
             new FormData(form).forEach((value, key) => data[key] = value);
             data.branchId = activeBranchId;
-            
+
             const oldDr = await getRecord('drivers', data.id);
             await updateRecord('drivers', data);
-            
+
             if (oldDr && oldDr.assignedVehicle !== data.assignedVehicle) {
                 if (oldDr.assignedVehicle) {
                     const oldV = await getRecord('vehicles', oldDr.assignedVehicle);
@@ -4519,6 +5084,7 @@
         document.getElementById('add-maintenance-btn').onclick = () => {
             const form = document.getElementById('maintenance-form');
             form.reset();
+            clearFormTomSelects(form);
             form.elements['id'].value = 'mn-' + Date.now();
             document.getElementById('maintenance-modal-title').innerText = 'Book Maintenance Service';
             document.getElementById('maintenance-modal').classList.remove('hidden');
@@ -4531,7 +5097,7 @@
             new FormData(form).forEach((value, key) => data[key] = value);
             data.branchId = activeBranchId;
             await updateRecord('maintenance', data);
-            
+
             const newHistory = {
                 id: 'hs-' + Date.now(),
                 branchId: activeBranchId,
@@ -4555,6 +5121,7 @@
         document.getElementById('add-fine-btn').onclick = () => {
             const form = document.getElementById('fine-form');
             form.reset();
+            clearFormTomSelects(form);
             form.elements['id'].value = 'fn-' + Date.now();
             document.getElementById('fine-modal-title').innerText = 'Record Violation Ticket';
             document.getElementById('fine-modal').classList.remove('hidden');
@@ -4974,7 +5541,7 @@
 
         document.addEventListener('DOMContentLoaded', async () => {
             await openDB();
-            
+
             const savedUser = localStorage.getItem('currentUser');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
@@ -5042,4 +5609,5 @@
         });
     </script>
 </body>
+
 </html>
