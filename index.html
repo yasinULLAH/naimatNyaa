@@ -527,6 +527,7 @@
             --font-size: 16px;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="min-h-screen flex flex-col antialiased">
 
@@ -1814,6 +1815,25 @@
         </div>
     </div>
 
+    <div id="details-view-modal" class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden no-print animate__animated animate__fadeIn">
+        <div class="bg-white rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50 sticky top-0 z-10">
+                <div class="flex items-center gap-3">
+                    <span id="details-view-modal-icon-wrapper" class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold"></span>
+                    <h3 class="text-base font-bold text-slate-800" id="details-view-modal-title">Record Details</h3>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="details-view-modal-edit-btn" class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors focus:outline-none" title="Edit Record">
+                        <i class="fa-solid fa-pen-to-square text-lg"></i>
+                    </button>
+                    <button type="button" class="close-modal-btn text-slate-400 hover:text-slate-600 text-xl focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <div id="details-view-modal-body" class="p-6 space-y-6 text-sm">
+            </div>
+        </div>
+    </div>
+
     <script>
         const DB_NAME = 'WadiAlRaihanTransportDB';
         const DB_VERSION = 1;
@@ -1985,13 +2005,13 @@
             for (let d of demoDrivers) await addRecord('drivers', d);
 
             const demoVehicles = [
-                { id: 'vh-01', branchId: 'br-1', plateNumber: 'A 82736', emirate: 'Abu Dhabi', vehicleType: 'Heavy Truck', brand: 'Mercedes-Benz', model: 'Actros', year: 2021, color: 'White', chassisNumber: 'WDF934021K8273412', engineNumber: 'OM501LA', fuelType: 'Diesel', odometer: 185000, status: 'Active', assignedDriver: 'dr-01', currentLocation: 'Mussafah, Abu Dhabi', regIssue: '2025-06-15', regExpiry: '2026-06-15', insuranceCompany: 'Al Ain Insurance', insurancePolicy: 'POL-902834-21', insuranceExpiry: '2026-06-14', permitNumber: 'P-98234-AD', permitExpiry: '2026-11-20', notes: 'Heavy distribution logistics core asset.' },
-                { id: 'vh-02', branchId: 'br-2', plateNumber: 'B 91827', emirate: 'Dubai', vehicleType: 'Light Truck', brand: 'Isuzu', model: 'NPR', year: 2020, color: 'Silver', chassisNumber: 'JALNPR75L71029472', engineNumber: '4HK1-TCS', fuelType: 'Diesel', odometer: 95400, status: 'Active', assignedDriver: 'dr-02', currentLocation: 'Al Quoz, Dubai', regIssue: '2025-07-15', regExpiry: '2026-07-15', insuranceCompany: 'Oman Insurance', insurancePolicy: 'INS-102934-20', insuranceExpiry: '2026-07-14', permitNumber: 'P-10923-DB', permitExpiry: '2026-07-10', notes: 'Urban logistics route vehicle.' },
-                { id: 'vh-03', branchId: 'br-1', plateNumber: 'C 38472', emirate: 'Sharjah', vehicleType: 'Bus', brand: 'Toyota', model: 'Coaster', year: 2022, color: 'White', chassisNumber: 'JT1KPB59B09847231', engineNumber: '1HZ', fuelType: 'Diesel', odometer: 42000, status: 'Under Maintenance', assignedDriver: 'dr-03', currentLocation: 'Industrial Area, Sharjah', regIssue: '2025-03-10', regExpiry: '2026-03-10', insuranceCompany: 'AXA Gulf', insurancePolicy: 'AXA-908234-22', insuranceExpiry: '2026-03-09', permitNumber: 'P-30294-SH', permitExpiry: '2026-04-05', notes: 'Staff passenger carrier unit.' },
-                { id: 'vh-04', branchId: 'br-2', plateNumber: 'D 57291', emirate: 'Ajman', vehicleType: 'School Bus', brand: 'Ashok Leyland', model: 'Falcon', year: 2019, color: 'Yellow', chassisNumber: 'MCLN42A87G0192845', engineNumber: 'H6E4S137', fuelType: 'Diesel', odometer: 112000, status: 'Active', assignedDriver: 'dr-04', currentLocation: 'Jurf, Ajman', regIssue: '2025-09-20', regExpiry: '2026-09-20', insuranceCompany: 'ADNIC', insurancePolicy: 'ADN-209384-19', insuranceExpiry: '2026-09-19', permitNumber: 'P-57291-AJ', permitExpiry: '2026-09-01', notes: 'Assigned distribution operational route.' },
-                { id: 'vh-05', branchId: 'br-1', plateNumber: 'E 48293', emirate: 'Abu Dhabi', vehicleType: 'Heavy Truck', brand: 'MAN', model: 'TGS', year: 2022, color: 'Red', chassisNumber: 'WMAN902834L203948', engineNumber: 'D2676LF', fuelType: 'Diesel', odometer: 68000, status: 'Active', assignedDriver: 'dr-05', currentLocation: 'Mussafah M-14, Abu Dhabi', regIssue: '2025-08-10', regExpiry: '2026-08-10', insuranceCompany: 'Al Ain Insurance', insurancePolicy: 'POL-394821-22', insuranceExpiry: '2026-08-09', permitNumber: 'P-48293-AD', permitExpiry: '2026-12-15', notes: 'Heavy transport logistics truck.' },
-                { id: 'vh-06', branchId: 'br-2', plateNumber: 'F 10293', emirate: 'Dubai', vehicleType: 'Light Truck', brand: 'Mitsubishi', model: 'Fuso', year: 2021, color: 'White', chassisNumber: 'JALFUSO902834712', engineNumber: '4D34', fuelType: 'Diesel', odometer: 81000, status: 'Active', assignedDriver: 'dr-06', currentLocation: 'Al Awir, Dubai', regIssue: '2025-11-20', regExpiry: '2026-11-20', insuranceCompany: 'Oman Insurance', insurancePolicy: 'INS-203948-21', insuranceExpiry: '2026-11-19', permitNumber: 'P-10293-DB', permitExpiry: '2026-11-15', notes: 'Urban light delivery truck.' },
-                { id: 'vh-07', branchId: 'br-1', plateNumber: 'G 90283', emirate: 'Sharjah', vehicleType: 'Passenger Bus', brand: 'Nissan', model: 'Civilian', year: 2020, color: 'Blue', chassisNumber: 'JN1CIVILIAN902834', engineNumber: 'TD42', fuelType: 'Diesel', odometer: 134000, status: 'Active', assignedDriver: 'dr-07', currentLocation: 'Al Khan, Sharjah', regIssue: '2025-05-05', regExpiry: '2026-05-05', insuranceCompany: 'AXA Gulf', insurancePolicy: 'AXA-203948-20', insuranceExpiry: '2026-05-04', permitNumber: 'P-90283-SH', permitExpiry: '2026-06-01', notes: 'Shuttle vehicle for passenger rosters.' }
+                { id: 'vh-01', branchId: 'br-1', internalCode: 'HT-01', plateNumber: 'A 82736', emirate: 'Abu Dhabi', vehicleType: 'Heavy Truck', brand: 'Mercedes-Benz', model: 'Actros', year: 2021, color: 'White', chassisNumber: 'WDF934021K8273412', engineNumber: 'OM501LA', fuelType: 'Diesel', odometer: 185000, status: 'Active', assignedDriver: 'dr-01', currentLocation: 'Mussafah, Abu Dhabi', regIssue: '2025-06-15', regExpiry: '2026-06-15', insuranceCompany: 'Al Ain Insurance', insurancePolicy: 'POL-902834-21', insuranceExpiry: '2026-06-14', permitNumber: 'P-98234-AD', permitExpiry: '2026-11-20', notes: 'Heavy distribution logistics core asset.' },
+                { id: 'vh-02', branchId: 'br-2', internalCode: 'LT-01', plateNumber: 'B 91827', emirate: 'Dubai', vehicleType: 'Light Truck', brand: 'Isuzu', model: 'NPR', year: 2020, color: 'Silver', chassisNumber: 'JALNPR75L71029472', engineNumber: '4HK1-TCS', fuelType: 'Diesel', odometer: 95400, status: 'Active', assignedDriver: 'dr-02', currentLocation: 'Al Quoz, Dubai', regIssue: '2025-07-15', regExpiry: '2026-07-15', insuranceCompany: 'Oman Insurance', insurancePolicy: 'INS-102934-20', insuranceExpiry: '2026-07-14', permitNumber: 'P-10923-DB', permitExpiry: '2026-07-10', notes: 'Urban logistics route vehicle.' },
+                { id: 'vh-03', branchId: 'br-1', internalCode: 'BS-01', plateNumber: 'C 38472', emirate: 'Sharjah', vehicleType: 'Bus', brand: 'Toyota', model: 'Coaster', year: 2022, color: 'White', chassisNumber: 'JT1KPB59B09847231', engineNumber: '1HZ', fuelType: 'Diesel', odometer: 42000, status: 'Under Maintenance', assignedDriver: 'dr-03', currentLocation: 'Industrial Area, Sharjah', regIssue: '2025-03-10', regExpiry: '2026-03-10', insuranceCompany: 'AXA Gulf', insurancePolicy: 'AXA-908234-22', insuranceExpiry: '2026-03-09', permitNumber: 'P-30294-SH', permitExpiry: '2026-04-05', notes: 'Staff passenger carrier unit.' },
+                { id: 'vh-04', branchId: 'br-2', internalCode: 'SB-01', plateNumber: 'D 57291', emirate: 'Ajman', vehicleType: 'School Bus', brand: 'Ashok Leyland', model: 'Falcon', year: 2019, color: 'Yellow', chassisNumber: 'MCLN42A87G0192845', engineNumber: 'H6E4S137', fuelType: 'Diesel', odometer: 112000, status: 'Active', assignedDriver: 'dr-04', currentLocation: 'Jurf, Ajman', regIssue: '2025-09-20', regExpiry: '2026-09-20', insuranceCompany: 'ADNIC', insurancePolicy: 'ADN-209384-19', insuranceExpiry: '2026-09-19', permitNumber: 'P-57291-AJ', permitExpiry: '2026-09-01', notes: 'Assigned distribution operational route.' },
+                { id: 'vh-05', branchId: 'br-1', internalCode: 'HT-02', plateNumber: 'E 48293', emirate: 'Abu Dhabi', vehicleType: 'Heavy Truck', brand: 'MAN', model: 'TGS', year: 2022, color: 'Red', chassisNumber: 'WMAN902834L203948', engineNumber: 'D2676LF', fuelType: 'Diesel', odometer: 68000, status: 'Active', assignedDriver: 'dr-05', currentLocation: 'Mussafah M-14, Abu Dhabi', regIssue: '2025-08-10', regExpiry: '2026-08-10', insuranceCompany: 'Al Ain Insurance', insurancePolicy: 'POL-394821-22', insuranceExpiry: '2026-08-09', permitNumber: 'P-48293-AD', permitExpiry: '2026-12-15', notes: 'Heavy transport logistics truck.' },
+                { id: 'vh-06', branchId: 'br-2', internalCode: 'LT-02', plateNumber: 'F 10293', emirate: 'Dubai', vehicleType: 'Light Truck', brand: 'Mitsubishi', model: 'Fuso', year: 2021, color: 'White', chassisNumber: 'JALFUSO902834712', engineNumber: '4D34', fuelType: 'Diesel', odometer: 81000, status: 'Active', assignedDriver: 'dr-06', currentLocation: 'Al Awir, Dubai', regIssue: '2025-11-20', regExpiry: '2026-11-20', insuranceCompany: 'Oman Insurance', insurancePolicy: 'INS-203948-21', insuranceExpiry: '2026-11-19', permitNumber: 'P-10293-DB', permitExpiry: '2026-11-15', notes: 'Urban light delivery truck.' },
+                { id: 'vh-07', branchId: 'br-1', internalCode: 'PB-01', plateNumber: 'G 90283', emirate: 'Sharjah', vehicleType: 'Passenger Bus', brand: 'Nissan', model: 'Civilian', year: 2020, color: 'Blue', chassisNumber: 'JN1CIVILIAN902834', engineNumber: 'TD42', fuelType: 'Diesel', odometer: 134000, status: 'Active', assignedDriver: 'dr-07', currentLocation: 'Al Khan, Sharjah', regIssue: '2025-05-05', regExpiry: '2026-05-05', insuranceCompany: 'AXA Gulf', insurancePolicy: 'AXA-203948-20', insuranceExpiry: '2026-05-04', permitNumber: 'P-90283-SH', permitExpiry: '2026-06-01', notes: 'Shuttle vehicle for passenger rosters.' }
             ];
             for (let v of demoVehicles) await addRecord('vehicles', v);
 
@@ -2415,7 +2435,7 @@
                         <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${badge}">${v.status}</span></td>
                         <td class="p-4 text-right">
                             <div class="flex justify-end gap-2">
-                                <a href="#/vehicles/view/${v.id}" class="p-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-eye"></i></a>
+                                <button onclick="openDetailsView('vehicles', '${v.id}')" class="p-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-eye"></i></button>
                                 <button onclick="editVehicle('${v.id}')" class="p-1.5 bg-amber-50 text-amber-600 hover:bg-amber-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-pen"></i></button>
                                 <button onclick="deleteVehicleRecord('${v.id}')" class="p-1.5 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-trash"></i></button>
                             </div>
@@ -2577,6 +2597,7 @@
                         <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${badge}">${d.status}</span></td>
                         <td class="p-4 text-right">
                             <div class="flex justify-end gap-2">
+                                <button onclick="openDetailsView('drivers', '${d.id}')" class="p-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-eye"></i></button>
                                 <button onclick="editDriver('${d.id}')" class="p-1.5 bg-amber-50 text-amber-600 hover:bg-amber-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-pen"></i></button>
                                 <button onclick="deleteDriverRecord('${d.id}')" class="p-1.5 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-trash"></i></button>
                             </div>
@@ -2615,6 +2636,7 @@
                         <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${badge}">${m.status}</span></td>
                         <td class="p-4 text-right">
                             <div class="flex justify-end gap-2">
+                                <button onclick="openDetailsView('maintenance', '${m.id}')" class="p-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-eye"></i></button>
                                 <button onclick="editMaintenance('${m.id}')" class="p-1.5 bg-amber-50 text-amber-600 hover:bg-amber-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-pen"></i></button>
                                 <button onclick="deleteMaintenanceRecord('${m.id}')" class="p-1.5 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-trash"></i></button>
                             </div>
@@ -2655,6 +2677,7 @@
                         <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${badge}">${f.status}</span></td>
                         <td class="p-4 text-right">
                             <div class="flex justify-end gap-2">
+                                <button onclick="openDetailsView('fines', '${f.id}')" class="p-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-eye"></i></button>
                                 <button onclick="editFine('${f.id}')" class="p-1.5 bg-amber-50 text-amber-600 hover:bg-amber-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-pen"></i></button>
                                 <button onclick="deleteFineRecord('${f.id}')" class="p-1.5 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded transition-colors text-xs font-bold"><i class="fa-solid fa-trash"></i></button>
                             </div>
@@ -3101,6 +3124,351 @@
             });
         }
 
+        window.openDetailsView = async (type, id) => {
+            const modal = document.getElementById('details-view-modal');
+            const titleEl = document.getElementById('details-view-modal-title');
+            const iconWrapper = document.getElementById('details-view-modal-icon-wrapper');
+            const bodyEl = document.getElementById('details-view-modal-body');
+            const editBtn = document.getElementById('details-view-modal-edit-btn');
+
+            if (!modal || !bodyEl) return;
+
+            let record = null;
+            let htmlContent = '';
+            let modalTitle = '';
+            let iconClass = '';
+            let iconBg = '';
+
+            if (type === 'vehicles') {
+                record = await getRecord('vehicles', id);
+                if (!record) return;
+                modalTitle = 'Vehicle Details';
+                iconClass = 'fa-solid fa-truck text-xs';
+                iconBg = 'bg-blue-600';
+
+                const drivers = await getAllRecords('drivers');
+                const dr = drivers.find(d => d.id === record.assignedDriver);
+                const assignedDriverName = dr ? dr.name : 'Unassigned';
+
+                let statusBadge = 'bg-slate-100 text-slate-800 border border-slate-200';
+                if (record.status === 'Active') statusBadge = 'bg-emerald-50 text-emerald-700 border border-emerald-200';
+                if (record.status === 'Under Maintenance') statusBadge = 'bg-amber-50 text-amber-700 border border-amber-200';
+                if (record.status === 'Sold') statusBadge = 'bg-rose-50 text-rose-700 border border-rose-200';
+
+                htmlContent = `
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Internal Code</div>
+                            <div class="text-base font-bold text-slate-700">${record.internalCode}</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${statusBadge}">${record.status}</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Plate Number</div>
+                            <div class="text-sm font-mono font-bold text-slate-800">${record.plateNumber} (${record.emirate})</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Vehicle Category</div>
+                            <div class="text-sm font-semibold text-slate-700">${record.vehicleType}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Brand & Model</div>
+                            <div class="text-sm font-semibold text-slate-700">${record.brand} ${record.model} (${record.year})</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Body Color</div>
+                            <div class="text-sm font-semibold text-slate-700">${record.color || 'N/A'}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Chassis Serial</div>
+                            <div class="text-sm font-mono text-slate-700">${record.chassisNumber}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Engine Number</div>
+                            <div class="text-sm font-mono text-slate-700">${record.engineNumber}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Fuel Type</div>
+                            <div class="text-sm font-semibold text-slate-700">${record.fuelType}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Current Odometer</div>
+                            <div class="text-sm font-bold text-slate-700">${parseInt(record.odometer).toLocaleString()} KM</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Assigned Driver</div>
+                            <div class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-user-tie text-slate-400"></i>
+                                <span>${assignedDriverName}</span>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Current Location</div>
+                            <div class="text-sm font-semibold text-slate-700 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-slate-400"></i>
+                                <span>${record.currentLocation || 'N/A'}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-4 space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Registration Issue</div>
+                                <div class="text-xs font-semibold text-slate-700">${record.regIssue}</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Registration Expiry</div>
+                                <div class="text-xs font-bold text-slate-800">${record.regExpiry}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-4 space-y-4 bg-blue-50/20 p-4 rounded-xl border border-blue-50">
+                        <div class="text-xs font-bold text-blue-800 uppercase tracking-wide">Insurance Information</div>
+                        <div class="grid grid-cols-2 gap-y-3 gap-x-4">
+                            <div class="col-span-2">
+                                <div class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Insurance Provider</div>
+                                <div class="text-xs font-semibold text-slate-700">${record.insuranceCompany}</div>
+                            </div>
+                            <div>
+                                <div class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Policy Number</div>
+                                <div class="text-xs font-semibold text-slate-700">${record.insurancePolicy}</div>
+                            </div>
+                            <div>
+                                <div class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Insurance Expiry</div>
+                                <div class="text-xs font-bold text-slate-800">${record.insuranceExpiry}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-4 space-y-3">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Permit Number</div>
+                                <div class="text-xs font-semibold text-slate-700">${record.permitNumber || 'N/A'}</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Permit Expiry</div>
+                                <div class="text-xs font-semibold text-slate-700">${record.permitExpiry || 'N/A'}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+            } else if (type === 'drivers') {
+                record = await getRecord('drivers', id);
+                if (!record) return;
+                modalTitle = 'Driver Details';
+                iconClass = 'fa-solid fa-id-card text-xs';
+                iconBg = 'bg-emerald-600';
+
+                const vehicles = await getAllRecords('vehicles');
+                const v = vehicles.find(item => item.id === record.assignedVehicle);
+                const assignedVehicleStr = v ? `${v.plateNumber} (${v.vehicleType})` : 'Unassigned';
+
+                let statusBadge = 'bg-slate-100 text-slate-800 border border-slate-200';
+                if (record.status === 'Active') statusBadge = 'bg-emerald-50 text-emerald-700 border border-emerald-200';
+                if (record.status === 'Inactive') statusBadge = 'bg-rose-50 text-rose-700 border border-rose-200';
+
+                htmlContent = `
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Full Driver Name</div>
+                            <div class="text-base font-bold text-slate-700">${record.name}</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${statusBadge}">${record.status}</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Mobile Contact</div>
+                            <div class="text-sm font-semibold text-slate-800">${record.mobile}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Emirates ID</div>
+                            <div class="text-sm font-mono font-bold text-slate-700">${record.emiratesId}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Licence Number</div>
+                            <div class="text-sm font-mono font-bold text-slate-700">${record.licenceNumber}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Licence Expiry</div>
+                            <div class="text-sm font-semibold text-slate-700">${record.licenceExpiry}</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Assigned Vehicle</div>
+                            <div class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-truck text-slate-400"></i>
+                                <span>${assignedVehicleStr}</span>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Internal Notes</div>
+                            <div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 whitespace-pre-wrap">${record.notes || 'No internal logs recorded.'}</div>
+                        </div>
+                    </div>
+                `;
+
+            } else if (type === 'maintenance') {
+                record = await getRecord('maintenance', id);
+                if (!record) return;
+                modalTitle = 'Maintenance Details';
+                iconClass = 'fa-solid fa-wrench text-xs';
+                iconBg = 'bg-amber-600';
+
+                const vehicles = await getAllRecords('vehicles');
+                const v = vehicles.find(item => item.id === record.vehicleId);
+                const vehicleStr = v ? `${v.plateNumber} (${v.internalCode})` : 'Unknown';
+
+                let statusBadge = 'bg-slate-100 text-slate-800 border border-slate-200';
+                if (record.status === 'Completed') statusBadge = 'bg-emerald-50 text-emerald-700 border border-emerald-200';
+                if (record.status === 'Pending') statusBadge = 'bg-amber-50 text-amber-700 border border-amber-200';
+                if (record.status === 'Scheduled') statusBadge = 'bg-blue-50 text-blue-700 border border-blue-200';
+
+                htmlContent = `
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Maintenance Task Type</div>
+                            <div class="text-base font-bold text-slate-700">${record.maintenanceType}</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${statusBadge}">${record.status}</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Fleet Vehicle</div>
+                            <div class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-truck text-slate-400"></i>
+                                <span>${vehicleStr}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Service Date</div>
+                            <div class="text-sm font-semibold text-slate-700">${record.serviceDate}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Next Service Due</div>
+                            <div class="text-sm font-bold text-slate-800">${record.nextServiceDate}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Odometer at Service</div>
+                            <div class="text-sm font-bold text-slate-700">${parseInt(record.odometer).toLocaleString()} KM</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Total Expense Cost</div>
+                            <div class="text-sm font-mono font-bold text-emerald-700">AED ${parseFloat(record.cost).toFixed(2)}</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Contractor / Workshop Name</div>
+                            <div class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-screwdriver-wrench text-slate-400"></i>
+                                <span>${record.workshopName}</span>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Parts & Spares Replaced</div>
+                            <div class="text-xs font-mono text-slate-600 bg-slate-50 p-2 border border-slate-100 rounded-lg flex flex-wrap gap-1.5">
+                                ${record.partsReplaced ? record.partsReplaced.split(',').map(p => `<span class="px-2 py-0.5 rounded bg-slate-200/80 text-slate-700">${p.trim()}</span>`).join('') : '<span class="text-slate-400 font-sans italic">None logged.</span>'}
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Maintenance Comments</div>
+                            <div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 whitespace-pre-wrap">${record.notes || 'No comments recorded.'}</div>
+                        </div>
+                    </div>
+                `;
+
+            } else if (type === 'fines') {
+                record = await getRecord('fines', id);
+                if (!record) return;
+                modalTitle = 'Fine Violation Details';
+                iconClass = 'fa-solid fa-circle-exclamation text-xs';
+                iconBg = 'bg-rose-600';
+
+                const vehicles = await getAllRecords('vehicles');
+                const drivers = await getAllRecords('drivers');
+                const v = vehicles.find(item => item.id === record.vehicleId);
+                const d = drivers.find(item => item.id === record.driverId);
+                const vehicleStr = v ? `${v.plateNumber} (${v.internalCode})` : 'Unknown';
+                const driverStr = d ? d.name : 'Unknown';
+
+                let statusBadge = 'bg-slate-100 text-slate-800 border border-slate-200';
+                if (record.status === 'Paid') statusBadge = 'bg-emerald-50 text-emerald-700 border border-emerald-200';
+                if (record.status === 'Unpaid') statusBadge = 'bg-rose-50 text-rose-700 border border-rose-200';
+                if (record.status === 'Disputed') statusBadge = 'bg-amber-50 text-amber-700 border border-amber-200';
+
+                htmlContent = `
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Violation Ticket No.</div>
+                            <div class="text-base font-bold text-slate-700 font-mono">${record.fineNumber}</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${statusBadge}">${record.status}</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Violating Vehicle</div>
+                            <div class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-truck text-slate-400"></i>
+                                <span>${vehicleStr}</span>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Offending Driver</div>
+                            <div class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-user-tie text-slate-400"></i>
+                                <span>${driverStr}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Fine Authority</div>
+                            <div class="text-sm font-semibold text-slate-700">${record.authority}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Infraction Date</div>
+                            <div class="text-sm font-semibold text-slate-700">${record.fineDate}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Penalty Cost</div>
+                            <div class="text-sm font-mono font-bold text-rose-700">AED ${parseFloat(record.amount).toFixed(2)}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Settlement Date</div>
+                            <div class="text-sm font-semibold text-slate-700">${record.paymentDate || 'Pending Settlement'}</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Offence Description</div>
+                            <div class="text-sm font-semibold text-slate-800">${record.description}</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Internal Notes</div>
+                            <div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 whitespace-pre-wrap">${record.notes || 'No internal notes recorded.'}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            titleEl.innerText = modalTitle;
+            iconWrapper.className = `w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold ${iconBg}`;
+            iconWrapper.innerHTML = `<i class="${iconClass}"></i>`;
+            bodyEl.innerHTML = htmlContent;
+
+            editBtn.onclick = () => {
+                modal.classList.add('hidden');
+                if (type === 'vehicles') editVehicle(id);
+                else if (type === 'drivers') editDriver(id);
+                else if (type === 'maintenance') editMaintenance(id);
+                else if (type === 'fines') editFine(id);
+            };
+
+            modal.classList.remove('hidden');
+        };
+
         async function editVehicle(id) {
             const v = await getRecord('vehicles', id);
             if (!v) return;
@@ -3489,22 +3857,64 @@
                 data.branchId = activeBranchId;
             }
             
+            const oldV = await getRecord('vehicles', data.id);
             await updateRecord('vehicles', data);
             
-            const newHistory = {
-                id: 'hs-' + Date.now(),
-                branchId: data.branchId || activeBranchId,
-                vehicleId: data.id,
-                date: new Date().toISOString().substring(0, 10),
-                type: 'Registration',
-                title: 'Fleet Vehicle Record Updated',
-                description: `Vehicle registered with internal code: ${data.internalCode} and plate: ${data.plateNumber}.`,
-                cost: 0,
-                odometer: data.odometer,
-                attachment: '',
-                createdDate: new Date().toISOString()
-            };
-            await addRecord('history', newHistory);
+            if (oldV && oldV.assignedDriver !== data.assignedDriver) {
+                if (oldV.assignedDriver) {
+                    const oldDr = await getRecord('drivers', oldV.assignedDriver);
+                    if (oldDr) {
+                        oldDr.assignedVehicle = "";
+                        await updateRecord('drivers', oldDr);
+                    }
+                }
+                if (data.assignedDriver) {
+                    const newDr = await getRecord('drivers', data.assignedDriver);
+                    if (newDr) {
+                        newDr.assignedVehicle = data.id;
+                        await updateRecord('drivers', newDr);
+                    }
+                }
+                const oldDrObj = oldV.assignedDriver ? await getRecord('drivers', oldV.assignedDriver) : null;
+                const newDrObj = data.assignedDriver ? await getRecord('drivers', data.assignedDriver) : null;
+                const desc = `Driver changed from ${oldDrObj ? oldDrObj.name : 'Unassigned'} to ${newDrObj ? newDrObj.name : 'Unassigned'}.`;
+                const log = {
+                    id: 'hs-' + Date.now(),
+                    branchId: data.branchId || activeBranchId,
+                    vehicleId: data.id,
+                    driverId: data.assignedDriver || oldV.assignedDriver,
+                    date: new Date().toISOString().substring(0, 10),
+                    type: 'Driver Change',
+                    title: 'Driver Assignment Updated',
+                    description: desc,
+                    cost: 0,
+                    odometer: parseInt(data.odometer || 0),
+                    attachment: '',
+                    createdDate: new Date().toISOString()
+                };
+                await addRecord('history', log);
+            } else if (!oldV && data.assignedDriver) {
+                const newDr = await getRecord('drivers', data.assignedDriver);
+                if (newDr) {
+                    newDr.assignedVehicle = data.id;
+                    await updateRecord('drivers', newDr);
+                }
+                const log = {
+                    id: 'hs-' + Date.now(),
+                    branchId: data.branchId || activeBranchId,
+                    vehicleId: data.id,
+                    driverId: data.assignedDriver,
+                    date: new Date().toISOString().substring(0, 10),
+                    type: 'Driver Change',
+                    title: 'Initial Driver Assigned',
+                    description: `Assigned driver ${newDr ? newDr.name : 'Unknown'} during registration.`,
+                    cost: 0,
+                    odometer: parseInt(data.odometer || 0),
+                    attachment: '',
+                    createdDate: new Date().toISOString()
+                };
+                await addRecord('history', log);
+            }
 
             document.getElementById('vehicle-modal').classList.add('hidden');
             showToast('success', 'Vehicle saved successfully.');
@@ -3525,7 +3935,66 @@
             const data = {};
             new FormData(form).forEach((value, key) => data[key] = value);
             data.branchId = activeBranchId;
+            
+            const oldDr = await getRecord('drivers', data.id);
             await updateRecord('drivers', data);
+            
+            if (oldDr && oldDr.assignedVehicle !== data.assignedVehicle) {
+                if (oldDr.assignedVehicle) {
+                    const oldV = await getRecord('vehicles', oldDr.assignedVehicle);
+                    if (oldV) {
+                        oldV.assignedDriver = "";
+                        await updateRecord('vehicles', oldV);
+                    }
+                }
+                if (data.assignedVehicle) {
+                    const newV = await getRecord('vehicles', data.assignedVehicle);
+                    if (newV) {
+                        newV.assignedDriver = data.id;
+                        await updateRecord('vehicles', newV);
+                    }
+                }
+                const oldVObj = oldDr.assignedVehicle ? await getRecord('vehicles', oldDr.assignedVehicle) : null;
+                const newVObj = data.assignedVehicle ? await getRecord('vehicles', data.assignedVehicle) : null;
+                const desc = `Vehicle assignment changed from ${oldVObj ? oldVObj.plateNumber : 'Unassigned'} to ${newVObj ? newVObj.plateNumber : 'Unassigned'}.`;
+                const log = {
+                    id: 'hs-' + Date.now(),
+                    branchId: data.branchId || activeBranchId,
+                    vehicleId: data.assignedVehicle || oldDr.assignedVehicle,
+                    driverId: data.id,
+                    date: new Date().toISOString().substring(0, 10),
+                    type: 'Driver Change',
+                    title: 'Driver Assignment Updated',
+                    description: desc,
+                    cost: 0,
+                    odometer: newVObj ? parseInt(newVObj.odometer || 0) : 0,
+                    attachment: '',
+                    createdDate: new Date().toISOString()
+                };
+                await addRecord('history', log);
+            } else if (!oldDr && data.assignedVehicle) {
+                const newV = await getRecord('vehicles', data.assignedVehicle);
+                if (newV) {
+                    newV.assignedDriver = data.id;
+                    await updateRecord('vehicles', newV);
+                }
+                const log = {
+                    id: 'hs-' + Date.now(),
+                    branchId: data.branchId || activeBranchId,
+                    vehicleId: data.assignedVehicle,
+                    driverId: data.id,
+                    date: new Date().toISOString().substring(0, 10),
+                    type: 'Driver Change',
+                    title: 'Initial Vehicle Assigned',
+                    description: `Assigned to vehicle ${newV ? newV.plateNumber : 'Unknown'} during registration.`,
+                    cost: 0,
+                    odometer: newV ? parseInt(newV.odometer || 0) : 0,
+                    attachment: '',
+                    createdDate: new Date().toISOString()
+                };
+                await addRecord('history', log);
+            }
+
             document.getElementById('driver-modal').classList.add('hidden');
             showToast('success', 'Driver registered.');
             showDrivers();
@@ -3756,12 +4225,21 @@
             });
         }
 
+        window.routeToVehicle = async (id) => {
+            document.getElementById('search-suggestions').classList.add('hidden');
+            document.getElementById('global-search').value = '';
+            window.location.hash = '#/vehicles';
+            setTimeout(async () => {
+                await openDetailsView('vehicles', id);
+            }, 100);
+        };
+
         window.routeToDriver = async (id) => {
             document.getElementById('search-suggestions').classList.add('hidden');
             document.getElementById('global-search').value = '';
             window.location.hash = '#/drivers';
             setTimeout(async () => {
-                await editDriver(id);
+                await openDetailsView('drivers', id);
             }, 100);
         };
 
@@ -3770,7 +4248,7 @@
             document.getElementById('global-search').value = '';
             window.location.hash = '#/maintenance';
             setTimeout(async () => {
-                await editMaintenance(id);
+                await openDetailsView('maintenance', id);
             }, 100);
         };
 
@@ -3779,7 +4257,7 @@
             document.getElementById('global-search').value = '';
             window.location.hash = '#/fines';
             setTimeout(async () => {
-                await editFine(id);
+                await openDetailsView('fines', id);
             }, 100);
         };
 
@@ -3852,7 +4330,7 @@
                 html += `<div class="px-3 py-1 bg-slate-50/70 text-[9px] font-bold text-slate-400 uppercase tracking-wider">Vehicles (${vehicles.length})</div>`;
                 vehicles.forEach(v => {
                     html += `
-                        <a href="#/vehicles/view/${v.id}" onclick="document.getElementById('search-suggestions').classList.add('hidden'); document.getElementById('global-search').value = '';" class="flex items-center justify-between px-4 py-2 hover:bg-slate-50 transition-colors cursor-pointer">
+                        <div onclick="window.routeToVehicle('${v.id}')" class="flex items-center justify-between px-4 py-2 hover:bg-slate-50 transition-colors cursor-pointer">
                             <div class="flex items-center gap-2.5 min-w-0">
                                 <div class="w-7 h-7 rounded bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">
                                     <i class="fa-solid fa-truck text-xs"></i>
@@ -3863,7 +4341,7 @@
                                 </div>
                             </div>
                             <span class="px-2 py-0.5 rounded-full text-[9px] font-bold ${v.status === 'Active' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-50 text-slate-600'} flex-shrink-0">${v.status}</span>
-                        </a>
+                        </div>
                     `;
                 });
             }
