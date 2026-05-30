@@ -409,18 +409,6 @@
                     <i class="fa-solid fa-angles-left"></i>
                 </button>
             </div>
-            
-            <div class="px-6 py-4 border-b border-slate-800 flex items-center gap-3 hidden md:flex w-full" id="sidebar-avatar-wrapper">
-                <div class="h-10 w-10 bg-slate-800 rounded-full flex items-center justify-center font-bold text-blue-400 text-lg shadow-inner" id="sidebar-avatar">
-                    A
-                </div>
-                <div class="flex-grow min-w-0">
-                    <p class="font-semibold text-sm truncate" id="sidebar-username">Guest User</p>
-                    <p class="text-xs text-slate-400 flex items-center gap-1" id="sidebar-role-badge">
-                        <i class="fa-solid fa-user-shield text-[10px]"></i> Standard
-                    </p>
-                </div>
-            </div>
 
             <nav class="w-full flex flex-row md:flex-col justify-around md:justify-start md:p-4 md:space-y-1 overflow-x-auto md:overflow-y-auto whitespace-nowrap scrollbar-none">
                 <a href="#/dashboard" class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start">
@@ -460,12 +448,6 @@
                     <span class="text-[10px] md:text-sm sidebar-text">Backup & Restore</span>
                 </a>
             </nav>
-            
-            <div class="p-4 border-t border-slate-800 hidden md:block w-full mt-auto">
-                <button id="logout-btn" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-800 hover:bg-red-600 hover:text-white text-slate-300 rounded-lg font-semibold transition-all">
-                    <i class="fa-solid fa-right-from-bracket"></i> <span class="sidebar-text">Sign Out</span>
-                </button>
-            </div>
         </aside>
 
         <div class="flex-grow flex flex-col min-w-0 md:h-full md:overflow-hidden">
@@ -488,6 +470,12 @@
                             <span id="active-branch-name-badge" class="max-w-[150px] truncate block">Loading Branch...</span>
                         </button>
                     </div>
+                    <button id="header-profile-btn" class="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 transition-all font-bold text-xs flex items-center justify-center shadow-sm">
+                        <span id="header-avatar-initials">AD</span>
+                    </button>
+                    <button id="logout-btn" class="w-8 h-8 rounded-lg bg-slate-50 text-slate-600 hover:bg-red-50 hover:text-red-600 border border-slate-200 transition-all flex items-center justify-center shadow-sm text-sm">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
                     <div id="renewal-warning" class="hidden animate__animated animate__pulse animate__infinite px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full shadow">
                         Tenant Renewal Alert
                     </div>
@@ -2107,17 +2095,23 @@
         function initAllTomSelects() {
             document.querySelectorAll('select').forEach(select => {
                 if (select.id && select.id.includes('select') || select.tagName === 'SELECT') {
+                    let prevValue = select.value;
                     if (tomSelectInstances[select.id]) {
+                        prevValue = tomSelectInstances[select.id].getValue() || select.value;
                         tomSelectInstances[select.id].destroy();
                     }
                     if (select.id) {
-                        tomSelectInstances[select.id] = new TomSelect(select, {
+                        const ts = new TomSelect(select, {
                             create: false,
                             sortField: {
                                 field: "text",
                                 direction: "asc"
                             }
                         });
+                        tomSelectInstances[select.id] = ts;
+                        if (prevValue) {
+                            ts.setValue(prevValue);
+                        }
                     }
                 }
             });
@@ -2125,11 +2119,10 @@
 
         async function updateSidebar() {
             if (!currentUser) return;
-            document.getElementById('sidebar-username').innerText = currentUser.username;
-            document.getElementById('sidebar-role-badge').innerHTML = currentUser.role === 'Admin' ? 
-                `<i class="fa-solid fa-user-shield text-[10px] text-blue-400"></i> Admin` : 
-                `<i class="fa-solid fa-user text-[10px] text-slate-400"></i> Standard`;
-            document.getElementById('sidebar-avatar').innerText = currentUser.username.substring(0, 2).toUpperCase();
+            const headerInitials = document.getElementById('header-avatar-initials');
+            if (headerInitials) {
+                headerInitials.innerText = currentUser.username.substring(0, 2).toUpperCase();
+            }
         }
 
         async function showDashboard() {
@@ -3027,20 +3020,38 @@
                     }
                     select.appendChild(opt);
                 });
+                if (tomSelectInstances[select.id]) {
+                    const ts = tomSelectInstances[select.id];
+                    ts.clearOptions();
+                    branches.forEach(b => {
+                        ts.addOption({ value: b.id, text: b.companyName || b.name || b.id });
+                    });
+                    const targetBranch = selectedBranchId || activeBranchId;
+                    ts.setValue(targetBranch);
+                }
             } else {
                 wrapper.classList.add('hidden');
             }
+        }
+
+        function setFormValues(form, data) {
+            form.reset();
+            Object.keys(data).forEach(key => {
+                const el = form.elements[key];
+                if (!el) return;
+                el.value = data[key];
+                if (el.tagName === 'SELECT' && el.id && tomSelectInstances[el.id]) {
+                    tomSelectInstances[el.id].setValue(data[key]);
+                }
+            });
         }
 
         async function editVehicle(id) {
             const v = await getRecord('vehicles', id);
             if (!v) return;
             const form = document.getElementById('vehicle-form');
-            form.reset();
             await setupVehicleBranchSelect(v.branchId);
-            Object.keys(v).forEach(key => {
-                if (form.elements[key]) form.elements[key].value = v[key];
-            });
+            setFormValues(form, v);
             document.getElementById('vehicle-modal-title').innerText = 'Edit Vehicle Record';
             document.getElementById('vehicle-modal').classList.remove('hidden');
         }
@@ -3049,10 +3060,7 @@
             const d = await getRecord('drivers', id);
             if (!d) return;
             const form = document.getElementById('driver-form');
-            form.reset();
-            Object.keys(d).forEach(key => {
-                if (form.elements[key]) form.elements[key].value = d[key];
-            });
+            setFormValues(form, d);
             document.getElementById('driver-modal-title').innerText = 'Edit Driver Record';
             document.getElementById('driver-modal').classList.remove('hidden');
         }
@@ -3061,10 +3069,7 @@
             const m = await getRecord('maintenance', id);
             if (!m) return;
             const form = document.getElementById('maintenance-form');
-            form.reset();
-            Object.keys(m).forEach(key => {
-                if (form.elements[key]) form.elements[key].value = m[key];
-            });
+            setFormValues(form, m);
             document.getElementById('maintenance-modal-title').innerText = 'Edit Maintenance Record';
             document.getElementById('maintenance-modal').classList.remove('hidden');
         }
@@ -3073,10 +3078,7 @@
             const f = await getRecord('fines', id);
             if (!f) return;
             const form = document.getElementById('fine-form');
-            form.reset();
-            Object.keys(f).forEach(key => {
-                if (form.elements[key]) form.elements[key].value = f[key];
-            });
+            setFormValues(form, f);
             document.getElementById('fine-modal-title').innerText = 'Edit Violation Ticket';
             document.getElementById('fine-modal').classList.remove('hidden');
         }
@@ -3281,6 +3283,39 @@
             localStorage.removeItem('currentUser');
             document.getElementById('login-form').reset();
             handleRouting();
+        };
+
+        document.getElementById('header-profile-btn').onclick = () => {
+            if (!currentUser) return;
+            Swal.fire({
+                title: 'User Profile',
+                html: `
+                    <div class="flex flex-col items-center p-3 text-slate-800">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-2xl mb-3 shadow-inner">
+                            ${currentUser.username.substring(0, 2).toUpperCase()}
+                        </div>
+                        <h4 class="text-base font-bold mb-1">${currentUser.username}</h4>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold ${currentUser.role === 'Admin' ? 'bg-blue-50 text-blue-600' : 'bg-slate-50 text-slate-600'}">
+                            ${currentUser.role} Account
+                        </span>
+                        <div class="w-full border-t border-slate-100 my-4"></div>
+                        <div class="w-full flex flex-col gap-2">
+                           <button onclick="Swal.clickConfirm(); window.location.hash = '#/backup';" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg text-sm transition-colors">
+                               <i class="fa-solid fa-gears mr-1"></i> Account Settings
+                           </button>
+                        </div>
+                    </div>
+                `,
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonText: 'Close',
+                cancelButtonColor: '#f1f5f9',
+                customClass: {
+                    popup: 'rounded-2xl border-none',
+                    title: 'text-lg font-bold text-slate-800',
+                    cancelButton: 'text-slate-600 font-semibold'
+                }
+            });
         };
 
         document.getElementById('sidebar-toggle-btn').onclick = () => {
@@ -3525,22 +3560,56 @@
             showVehicleDetail(data.vehicleId);
         };
 
+        function captureFormState(form) {
+            if (!form) return '';
+            const data = {};
+            new FormData(form).forEach((value, key) => data[key] = value);
+            return JSON.stringify(data);
+        }
+
+        const modalObserver = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                if (mutation.attributeName === 'class') {
+                    const target = mutation.target;
+                    if (target.classList.contains('fixed') && !target.classList.contains('hidden')) {
+                        const form = target.querySelector('form');
+                        if (form) {
+                            setTimeout(() => {
+                                target.dataset.initialState = captureFormState(form);
+                            }, 50);
+                        }
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.fixed').forEach(modal => {
+            modalObserver.observe(modal, { attributes: true });
+        });
+
         document.querySelectorAll('.close-modal-btn').forEach(btn => {
             btn.onclick = event => {
                 const modal = event.target.closest('.fixed');
                 if (modal) {
-                    Swal.fire({
-                        title: 'Are you sure?',
-                        text: "Unsaved adjustments on this form will be discarded.",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Yes, discard',
-                        cancelButtonText: 'Cancel'
-                    }).then(result => {
-                        if (result.isConfirmed) {
-                            modal.classList.add('hidden');
-                        }
-                    });
+                    const form = modal.querySelector('form');
+                    const initialState = modal.dataset.initialState;
+                    const currentState = form ? captureFormState(form) : '';
+                    if (!form || !initialState || initialState === currentState) {
+                        modal.classList.add('hidden');
+                    } else {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "Unsaved adjustments on this form will be discarded.",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, discard',
+                            cancelButtonText: 'Cancel'
+                        }).then(result => {
+                            if (result.isConfirmed) {
+                                modal.classList.add('hidden');
+                            }
+                        });
+                    }
                 }
             };
         });
