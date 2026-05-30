@@ -1280,28 +1280,60 @@
 
                 <section id="page-reports" class="app-page space-y-6 hidden">
                     <div class="flex flex-wrap items-center justify-between gap-4">
-                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                            <i class="fa-solid fa-file-invoice text-slate-600"></i> Financial & Operations Reports
+                        <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-file-invoice-dollar text-blue-600"></i> Corporate Insights & Reporting
                         </h2>
-                        <button id="export-report-btn" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-colors shadow">
-                            <i class="fa-solid fa-file-csv"></i> Export Table to CSV
-                        </button>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <button id="report-print-btn" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-all shadow">
+                                <i class="fa-solid fa-print"></i> Print Executive Report
+                            </button>
+                            <button id="report-csv-btn" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg flex items-center gap-2 transition-all shadow">
+                                <i class="fa-solid fa-file-csv"></i> Export CSV
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 space-y-6">
-                        <div class="flex flex-wrap gap-4 items-center border-b border-slate-100 pb-4">
-                            <div class="w-full md:w-64">
-                                <label class="block text-xs font-bold text-slate-500 mb-1">Select Report Module</label>
-                                <select id="report-selector" class="w-full border rounded-lg focus:outline-none">
-                                    <option value="vehicles">Fleet Inventory Listing</option>
-                                    <option value="expiries">Documents Impending Expiry</option>
-                                    <option value="maintenance">Maintenance Overview</option>
-                                    <option value="fines">Ticket & Violation Penalties</option>
-                                    <option value="drivers">Driver Deployments</option>
-                                </select>
-                            </div>
+                    <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Insights Category</label>
+                            <select id="report-module" class="w-full border rounded-lg focus:outline-none py-2 px-3 text-xs bg-slate-50 border-slate-200">
+                                <option value="dashboard">Executive Summary & Charts</option>
+                                <option value="vehicles">Fleet Inventory & Utilization</option>
+                                <option value="maintenance">Maintenance Service & Costs</option>
+                                <option value="fines">Ticket & Violation Analytics</option>
+                                <option value="expiries">Registrations & Permits Expiry</option>
+                                <option value="drivers">Driver Deployments & Profile</option>
+                            </select>
                         </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Start Date</label>
+                            <input type="date" id="report-start-date" class="w-full border rounded-lg focus:outline-none py-1.5 px-3 text-xs bg-slate-50 border-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">End Date</label>
+                            <input type="date" id="report-end-date" class="w-full border rounded-lg focus:outline-none py-1.5 px-3 text-xs bg-slate-50 border-slate-200">
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="report-apply-filters" class="flex-grow py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors shadow">Apply Filters</button>
+                            <button id="report-reset-filters" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg transition-colors border">Reset</button>
+                        </div>
+                    </div>
 
+                    <div id="report-cards-container" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+
+                    <div id="report-charts-panel" class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+                        <div class="h-64 flex flex-col justify-between">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2" id="chart-left-title">Financial Distribution</h4>
+                            <div class="relative flex-grow h-full max-h-[220px]"><canvas id="report-chart-left"></canvas></div>
+                        </div>
+                        <div class="h-64 flex flex-col justify-between">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2" id="chart-right-title">Monthly Outlay Trend</h4>
+                            <div class="relative flex-grow h-full max-h-[220px]"><canvas id="report-chart-right"></canvas></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 space-y-4">
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Detailed Data Log</h4>
                         <div class="w-full overflow-x-auto">
                             <table id="reports-output-table" class="w-full border-collapse">
                                 <thead id="reports-header-row"></thead>
@@ -2772,32 +2804,223 @@
             initAllDataTables();
         }
 
+        let reportChartLeftInstance = null;
+        let reportChartRightInstance = null;
+
         async function showReports() {
-            const module = document.getElementById('report-selector').value;
+            destroyDataTables();
+            
+            if (reportChartLeftInstance) {
+                reportChartLeftInstance.destroy();
+                reportChartLeftInstance = null;
+            }
+            if (reportChartRightInstance) {
+                reportChartRightInstance.destroy();
+                reportChartRightInstance = null;
+            }
+
+            const module = document.getElementById('report-module').value;
+            const startVal = document.getElementById('report-start-date').value;
+            const endVal = document.getElementById('report-end-date').value;
             const header = document.getElementById('reports-header-row');
             const tbody = document.getElementById('reports-table-body');
-            
+            const cardsContainer = document.getElementById('report-cards-container');
+            const chartsPanel = document.getElementById('report-charts-panel');
+
             header.innerHTML = '';
             tbody.innerHTML = '';
+            cardsContainer.innerHTML = '';
 
             const rawVehicles = await getAllRecords('vehicles');
             const rawDrivers = await getAllRecords('drivers');
             const rawMaintenance = await getAllRecords('maintenance');
             const rawFines = await getAllRecords('fines');
+            const rawHistory = await getAllRecords('history');
 
             const vehicles = rawVehicles.filter(item => item.branchId === activeBranchId);
             const drivers = rawDrivers.filter(item => item.branchId === activeBranchId);
-            const maintenance = rawMaintenance.filter(item => item.branchId === activeBranchId);
-            const fines = rawFines.filter(item => item.branchId === activeBranchId);
+            const maintenance = rawMaintenance.filter(item => item.branchId === activeBranchId && (!startVal || new Date(item.serviceDate) >= new Date(startVal)) && (!endVal || new Date(item.serviceDate) <= new Date(endVal)));
+            const fines = rawFines.filter(item => item.branchId === activeBranchId && (!startVal || new Date(item.fineDate) >= new Date(startVal)) && (!endVal || new Date(item.fineDate) <= new Date(endVal)));
+            const history = rawHistory.filter(item => item.branchId === activeBranchId && (!startVal || new Date(item.date) >= new Date(startVal)) && (!endVal || new Date(item.date) <= new Date(endVal)));
 
-            if (module === 'vehicles') {
+            if (module === 'dashboard') {
+                chartsPanel.classList.remove('hidden');
+                document.getElementById('chart-left-title').innerText = 'Expense Category Allocation';
+                document.getElementById('chart-right-title').innerText = 'Monthly Operations Costs';
+
+                const totalFines = fines.reduce((acc, curr) => acc + parseFloat(curr.amount || 0), 0);
+                const totalMaint = maintenance.reduce((acc, curr) => acc + parseFloat(curr.cost || 0), 0);
+                const totalExp = totalFines + totalMaint;
+                const activeRatio = vehicles.length > 0 ? ((vehicles.filter(v => v.status === 'Active').length / vehicles.length) * 100).toFixed(0) : 0;
+                const openTickets = fines.filter(f => f.status === 'Unpaid').length;
+                const pendingServices = maintenance.filter(m => m.status === 'Pending').length;
+
+                cardsContainer.innerHTML = `
+                    <div class="p-5 bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Combined Outlay</div>
+                        <div class="text-xl font-bold mt-2">AED ${totalExp.toFixed(2)}</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-emerald-600 to-teal-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-emerald-100 uppercase tracking-wider">Fleet Active Ratio</div>
+                        <div class="text-xl font-bold mt-2">${activeRatio}%</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-rose-600 to-pink-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-rose-100 uppercase tracking-wider">Open Fine Tickets</div>
+                        <div class="text-xl font-bold mt-2">${openTickets} Tickets</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-amber-100 uppercase tracking-wider">Pending Bookings</div>
+                        <div class="text-xl font-bold mt-2">${pendingServices} Tasks</div>
+                    </div>
+                `;
+
+                const ctxLeft = document.getElementById('report-chart-left').getContext('2d');
+                reportChartLeftInstance = new Chart(ctxLeft, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Fines & Violations', 'Maintenance Services'],
+                        datasets: [{
+                            data: [totalFines, totalMaint],
+                            backgroundColor: ['#f43f5e', '#f59e0b'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+                    }
+                });
+
+                const monthlyCosts = {};
+                history.forEach(h => {
+                    const month = h.date.substring(0, 7);
+                    monthlyCosts[month] = (monthlyCosts[month] || 0) + parseFloat(h.cost || 0);
+                });
+                const sortedMonths = Object.keys(monthlyCosts).sort();
+                const costValues = sortedMonths.map(m => monthlyCosts[m]);
+
+                const ctxRight = document.getElementById('report-chart-right').getContext('2d');
+                reportChartRightInstance = new Chart(ctxRight, {
+                    type: 'bar',
+                    data: {
+                        labels: sortedMonths.length > 0 ? sortedMonths : ['No Data'],
+                        datasets: [{
+                            label: 'Monthly Costs (AED)',
+                            data: costValues.length > 0 ? costValues : [0],
+                            backgroundColor: '#3b82f6',
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { beginAtZero: true, grid: { drawBorder: false } }, x: { grid: { display: false } } }
+                    }
+                });
+
+                header.innerHTML = `
+                    <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase border-b">
+                        <th class="p-4">Date</th>
+                        <th class="p-4">Event Category</th>
+                        <th class="p-4">Resource</th>
+                        <th class="p-4">Headline / Details</th>
+                        <th class="p-4">Cost</th>
+                    </tr>
+                `;
+                history.slice(0, 10).forEach(h => {
+                    const v = vehicles.find(item => item.id === h.vehicleId);
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-slate-50 border-b">
+                            <td class="p-4">${h.date}</td>
+                            <td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${h.type === 'Fine' ? 'bg-rose-50 text-rose-600' : h.type === 'Maintenance' ? 'bg-amber-50 text-amber-600' : 'bg-slate-50 text-slate-600'}">${h.type}</span></td>
+                            <td class="p-4 font-semibold">${v ? v.plateNumber : 'N/A'}</td>
+                            <td class="p-4 text-slate-600">${h.description}</td>
+                            <td class="p-4 font-mono font-semibold">AED ${parseFloat(h.cost).toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+
+            } else if (module === 'vehicles') {
+                chartsPanel.classList.remove('hidden');
+                document.getElementById('chart-left-title').innerText = 'Vehicle Category Share';
+                document.getElementById('chart-right-title').innerText = 'Fleet Allocation State';
+
+                const totalReg = vehicles.length;
+                const active = vehicles.filter(v => v.status === 'Active').length;
+                const maint = vehicles.filter(v => v.status === 'Under Maintenance').length;
+                const totalOdo = vehicles.reduce((acc, curr) => acc + parseInt(curr.odometer || 0), 0);
+
+                cardsContainer.innerHTML = `
+                    <div class="p-5 bg-gradient-to-r from-blue-600 to-indigo-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-blue-100 uppercase tracking-wider">Fleet Strength</div>
+                        <div class="text-xl font-bold mt-2">${totalReg} Assets</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-emerald-600 to-teal-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-emerald-100 uppercase tracking-wider">Active Deployments</div>
+                        <div class="text-xl font-bold mt-2">${active} Active</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-amber-100 uppercase tracking-wider">Under Services</div>
+                        <div class="text-xl font-bold mt-2">${maint} Under Service</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Accumulated Mileage</div>
+                        <div class="text-xl font-bold mt-2">${totalOdo.toLocaleString()} KM</div>
+                    </div>
+                `;
+
+                const types = { 'Heavy Truck': 0, 'Light Truck': 0, 'Bus': 0, 'School Bus': 0, 'Passenger Bus': 0 };
+                vehicles.forEach(v => { types[v.vehicleType] = (types[v.vehicleType] || 0) + 1; });
+
+                const ctxLeft = document.getElementById('report-chart-left').getContext('2d');
+                reportChartLeftInstance = new Chart(ctxLeft, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(types),
+                        datasets: [{
+                            data: Object.values(types),
+                            backgroundColor: '#3b82f6',
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+
+                const states = { 'Active': 0, 'Inactive': 0, 'Under Maintenance': 0, 'Sold': 0 };
+                vehicles.forEach(v => { states[v.status] = (states[v.status] || 0) + 1; });
+
+                const ctxRight = document.getElementById('report-chart-right').getContext('2d');
+                reportChartRightInstance = new Chart(ctxRight, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(states),
+                        datasets: [{
+                            data: Object.values(states),
+                            backgroundColor: ['#10b981', '#64748b', '#f59e0b', '#ef4444'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+                    }
+                });
+
                 header.innerHTML = `
                     <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase border-b">
                         <th class="p-4">Internal Code</th>
                         <th class="p-4">Plate No.</th>
                         <th class="p-4">Type</th>
-                        <th class="p-4">Model</th>
-                        <th class="p-4">Odometer (KM)</th>
+                        <th class="p-4">Model Details</th>
+                        <th class="p-4">Odometer</th>
                         <th class="p-4">Status</th>
                     </tr>
                 `;
@@ -2807,41 +3030,102 @@
                             <td class="p-4 font-semibold">${v.internalCode}</td>
                             <td class="p-4 font-mono font-bold">${v.plateNumber}</td>
                             <td class="p-4">${v.vehicleType}</td>
-                            <td class="p-4">${v.brand} ${v.model}</td>
-                            <td class="p-4">${parseInt(v.odometer).toLocaleString()}</td>
+                            <td class="p-4">${v.brand} ${v.model} (${v.year})</td>
+                            <td class="p-4">${parseInt(v.odometer).toLocaleString()} KM</td>
                             <td class="p-4 font-semibold">${v.status}</td>
                         </tr>
                     `;
                 });
-            } else if (module === 'expiries') {
-                header.innerHTML = `
-                    <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase border-b">
-                        <th class="p-4">Resource</th>
-                        <th class="p-4">Expiry Date</th>
-                        <th class="p-4">Status</th>
-                    </tr>
+
+            } else if (module === 'maintenance') {
+                chartsPanel.classList.remove('hidden');
+                document.getElementById('chart-left-title').innerText = 'Workflow Split';
+                document.getElementById('chart-right-title').innerText = 'Monthly Maintenance Costs';
+
+                const totalCost = maintenance.reduce((acc, curr) => acc + parseFloat(curr.cost || 0), 0);
+                const completed = maintenance.filter(m => m.status === 'Completed').length;
+                const pending = maintenance.filter(m => m.status === 'Pending').length;
+                const avgCost = maintenance.length > 0 ? totalCost / maintenance.length : 0;
+
+                cardsContainer.innerHTML = `
+                    <div class="p-5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-amber-100 uppercase tracking-wider">Service Outlays</div>
+                        <div class="text-xl font-bold mt-2">AED ${totalCost.toFixed(2)}</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-emerald-600 to-teal-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-emerald-100 uppercase tracking-wider">Completed Jobs</div>
+                        <div class="text-xl font-bold mt-2">${completed} Services</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-rose-600 to-pink-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-rose-100 uppercase tracking-wider">Pending Orders</div>
+                        <div class="text-xl font-bold mt-2">${pending} Pending</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Average Ticket Cost</div>
+                        <div class="text-xl font-bold mt-2">AED ${avgCost.toFixed(2)}</div>
+                    </div>
                 `;
-                const today = new Date();
-                vehicles.forEach(v => {
-                    if (v.regExpiry) {
-                        const days = Math.ceil((new Date(v.regExpiry) - today) / (1000 * 60 * 60 * 24));
-                        tbody.innerHTML += `
-                            <tr class="hover:bg-slate-50 border-b">
-                                <td class="p-4 font-semibold">${v.plateNumber} Registration</td>
-                                <td class="p-4">${v.regExpiry}</td>
-                                <td class="p-4 font-bold ${days < 0 ? 'text-red-600' : 'text-slate-600'}">${days < 0 ? 'Expired' : `${days} Days Left`}</td>
-                            </tr>
-                        `;
+
+                const maintStates = { 'Completed': 0, 'Pending': 0, 'Scheduled': 0 };
+                maintenance.forEach(m => { maintStates[m.status] = (maintStates[m.status] || 0) + 1; });
+
+                const ctxLeft = document.getElementById('report-chart-left').getContext('2d');
+                reportChartLeftInstance = new Chart(ctxLeft, {
+                    type: 'pie',
+                    data: {
+                        labels: Object.keys(maintStates),
+                        datasets: [{
+                            data: Object.values(maintStates),
+                            backgroundColor: ['#10b981', '#f59e0b', '#3b82f6'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
                     }
                 });
-            } else if (module === 'maintenance') {
+
+                const monthlyMaint = {};
+                maintenance.forEach(m => {
+                    const month = m.serviceDate.substring(0, 7);
+                    monthlyMaint[month] = (monthlyMaint[month] || 0) + parseFloat(m.cost || 0);
+                });
+                const sortedMonths = Object.keys(monthlyMaint).sort();
+                const costValues = sortedMonths.map(m => monthlyMaint[m]);
+
+                const ctxRight = document.getElementById('report-chart-right').getContext('2d');
+                reportChartRightInstance = new Chart(ctxRight, {
+                    type: 'line',
+                    data: {
+                        labels: sortedMonths.length > 0 ? sortedMonths : ['No Data'],
+                        datasets: [{
+                            label: 'Maintenance Outlay (AED)',
+                            data: costValues.length > 0 ? costValues : [0],
+                            borderColor: '#f59e0b',
+                            backgroundColor: '#fef3c7',
+                            fill: true,
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+
                 header.innerHTML = `
                     <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase border-b">
                         <th class="p-4">Vehicle</th>
-                        <th class="p-4">Task</th>
-                        <th class="p-4">Workshop</th>
-                        <th class="p-4">Date</th>
+                        <th class="p-4">Category / Task</th>
+                        <th class="p-4">Contractor / Workshop</th>
+                        <th class="p-4">Service Date</th>
+                        <th class="p-4">Due Date</th>
                         <th class="p-4">Cost</th>
+                        <th class="p-4">Status</th>
                     </tr>
                 `;
                 maintenance.forEach(m => {
@@ -2852,39 +3136,225 @@
                             <td class="p-4">${m.maintenanceType}</td>
                             <td class="p-4">${m.workshopName}</td>
                             <td class="p-4">${m.serviceDate}</td>
-                            <td class="p-4 font-bold">AED ${parseFloat(m.cost).toFixed(2)}</td>
+                            <td class="p-4">${m.nextServiceDate}</td>
+                            <td class="p-4 font-mono font-semibold">AED ${parseFloat(m.cost).toFixed(2)}</td>
+                            <td class="p-4 font-semibold">${m.status}</td>
                         </tr>
                     `;
                 });
+
             } else if (module === 'fines') {
+                chartsPanel.classList.remove('hidden');
+                document.getElementById('chart-left-title').innerText = 'Violations Authority Share';
+                document.getElementById('chart-right-title').innerText = 'Payment Ratio';
+
+                const totalCost = fines.reduce((acc, curr) => acc + parseFloat(curr.amount || 0), 0);
+                const unpaid = fines.filter(f => f.status === 'Unpaid').reduce((acc, curr) => acc + parseFloat(curr.amount || 0), 0);
+                const paidCount = fines.filter(f => f.status === 'Paid').length;
+                const unpaidCount = fines.filter(f => f.status === 'Unpaid').length;
+
+                cardsContainer.innerHTML = `
+                    <div class="p-5 bg-gradient-to-r from-rose-600 to-pink-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-rose-100 uppercase tracking-wider">Tickets Accumulated</div>
+                        <div class="text-xl font-bold mt-2">AED ${totalCost.toFixed(2)}</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-red-100 uppercase tracking-wider">Impending Settlements</div>
+                        <div class="text-xl font-bold mt-2">AED ${unpaid.toFixed(2)}</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-emerald-600 to-teal-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-emerald-100 uppercase tracking-wider">Settled Violations</div>
+                        <div class="text-xl font-bold mt-2">${paidCount} Paid</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Outstanding Fines</div>
+                        <div class="text-xl font-bold mt-2">${unpaidCount} Unpaid</div>
+                    </div>
+                `;
+
+                const auths = {};
+                fines.forEach(f => { auths[f.authority] = (auths[f.authority] || 0) + 1; });
+
+                const ctxLeft = document.getElementById('report-chart-left').getContext('2d');
+                reportChartLeftInstance = new Chart(ctxLeft, {
+                    type: 'polarArea',
+                    data: {
+                        labels: Object.keys(auths),
+                        datasets: [{
+                            data: Object.values(auths),
+                            backgroundColor: ['#f43f5e', '#3b82f6', '#f59e0b', '#10b981', '#8b5cf6'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } }
+                    }
+                });
+
+                const states = { 'Paid': paidCount, 'Unpaid': unpaidCount, 'Disputed': fines.filter(f => f.status === 'Disputed').length };
+
+                const ctxRight = document.getElementById('report-chart-right').getContext('2d');
+                reportChartRightInstance = new Chart(ctxRight, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(states),
+                        datasets: [{
+                            data: Object.values(states),
+                            backgroundColor: ['#10b981', '#ef4444', '#f59e0b'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+                    }
+                });
+
                 header.innerHTML = `
                     <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase border-b">
                         <th class="p-4">Ticket</th>
                         <th class="p-4">Vehicle</th>
+                        <th class="p-4">Driver</th>
                         <th class="p-4">Authority</th>
+                        <th class="p-4">Offence</th>
+                        <th class="p-4">Date</th>
                         <th class="p-4">Amount</th>
                         <th class="p-4">Status</th>
                     </tr>
                 `;
                 fines.forEach(f => {
                     const v = vehicles.find(item => item.id === f.vehicleId);
+                    const d = drivers.find(item => item.id === f.driverId);
                     tbody.innerHTML += `
                         <tr class="hover:bg-slate-50 border-b">
                             <td class="p-4 font-mono">${f.fineNumber}</td>
                             <td class="p-4 font-semibold">${v ? v.plateNumber : 'Unknown'}</td>
+                            <td class="p-4 font-medium">${d ? d.name : 'Unknown'}</td>
                             <td class="p-4">${f.authority}</td>
-                            <td class="p-4 font-bold">AED ${parseFloat(f.amount).toFixed(2)}</td>
+                            <td class="p-4 text-slate-600">${f.description}</td>
+                            <td class="p-4">${f.fineDate}</td>
+                            <td class="p-4 font-mono font-semibold text-rose-700">AED ${parseFloat(f.amount).toFixed(2)}</td>
                             <td class="p-4 font-semibold">${f.status}</td>
                         </tr>
                     `;
                 });
+
+            } else if (module === 'expiries') {
+                chartsPanel.classList.add('hidden');
+
+                const today = new Date();
+                let expiredReg = 0;
+                let expiringReg = 0;
+                let expiredPermit = 0;
+
+                vehicles.forEach(v => {
+                    if (v.regExpiry) {
+                        const days = Math.ceil((new Date(v.regExpiry) - today) / (1000 * 60 * 60 * 24));
+                        if (days < 0) expiredReg++;
+                        else if (days <= 30) expiringReg++;
+                    }
+                    if (v.permitExpiry) {
+                        const days = Math.ceil((new Date(v.permitExpiry) - today) / (1000 * 60 * 60 * 24));
+                        if (days < 0) expiredPermit++;
+                    }
+                });
+
+                cardsContainer.innerHTML = `
+                    <div class="p-5 bg-gradient-to-r from-blue-600 to-indigo-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-blue-100 uppercase tracking-wider">Fleet Core Assets</div>
+                        <div class="text-xl font-bold mt-2">${vehicles.length} Vehicles</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-rose-600 to-pink-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-rose-100 uppercase tracking-wider">Expired Registries</div>
+                        <div class="text-xl font-bold mt-2">${expiredReg} Records</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-amber-100 uppercase tracking-wider">Expiries Within Month</div>
+                        <div class="text-xl font-bold mt-2">${expiringReg} Records</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-red-600 to-pink-600 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-red-100 uppercase tracking-wider">Expired Road Permits</div>
+                        <div class="text-xl font-bold mt-2">${expiredPermit} Permits</div>
+                    </div>
+                `;
+
+                header.innerHTML = `
+                    <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase border-b">
+                        <th class="p-4">Asset / Document</th>
+                        <th class="p-4">Category</th>
+                        <th class="p-4">Expiry Date</th>
+                        <th class="p-4">Status & Days Out</th>
+                    </tr>
+                `;
+                vehicles.forEach(v => {
+                    if (v.regExpiry) {
+                        const days = Math.ceil((new Date(v.regExpiry) - today) / (1000 * 60 * 60 * 24));
+                        tbody.innerHTML += `
+                            <tr class="hover:bg-slate-50 border-b">
+                                <td class="p-4 font-mono font-bold">${v.plateNumber} Registration</td>
+                                <td class="p-4">Vehicle Mulkiya</td>
+                                <td class="p-4">${v.regExpiry}</td>
+                                <td class="p-4 font-semibold ${days < 0 ? 'text-rose-600' : 'text-slate-600'}">${days < 0 ? `Expired (${Math.abs(days)} Days Ago)` : `${days} Days Left`}</td>
+                            </tr>
+                        `;
+                    }
+                    if (v.permitExpiry) {
+                        const days = Math.ceil((new Date(v.permitExpiry) - today) / (1000 * 60 * 60 * 24));
+                        tbody.innerHTML += `
+                            <tr class="hover:bg-slate-50 border-b">
+                                <td class="p-4 font-mono font-bold">${v.plateNumber} Permit</td>
+                                <td class="p-4">Road Transport Permit</td>
+                                <td class="p-4">${v.permitExpiry}</td>
+                                <td class="p-4 font-semibold ${days < 0 ? 'text-rose-600' : 'text-slate-600'}">${days < 0 ? `Expired (${Math.abs(days)} Days Ago)` : `${days} Days Left`}</td>
+                            </tr>
+                        `;
+                    }
+                });
+
             } else if (module === 'drivers') {
+                chartsPanel.classList.add('hidden');
+
+                const activeDrivers = drivers.filter(d => d.status === 'Active').length;
+                const totalD = drivers.length;
+                const unassigned = drivers.filter(d => d.assignedVehicle === '').length;
+
+                const today = new Date();
+                let expiredLicence = 0;
+                drivers.forEach(d => {
+                    if (d.licenceExpiry && new Date(d.licenceExpiry) < today) expiredLicence++;
+                });
+
+                cardsContainer.innerHTML = `
+                    <div class="p-5 bg-gradient-to-r from-emerald-600 to-teal-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-emerald-100 uppercase tracking-wider">Driver Strength</div>
+                        <div class="text-xl font-bold mt-2">${totalD} Operators</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-blue-600 to-indigo-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-blue-100 uppercase tracking-wider">Active Operators</div>
+                        <div class="text-xl font-bold mt-2">${activeDrivers} Active</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-amber-100 uppercase tracking-wider">Unassigned Roster</div>
+                        <div class="text-xl font-bold mt-2">${unassigned} Operators</div>
+                    </div>
+                    <div class="p-5 bg-gradient-to-r from-rose-600 to-pink-500 rounded-2xl shadow text-white flex flex-col justify-between">
+                        <div class="text-[10px] font-bold text-rose-100 uppercase tracking-wider">Expired Licences</div>
+                        <div class="text-xl font-bold mt-2">${expiredLicence} Expired</div>
+                    </div>
+                `;
+
                 header.innerHTML = `
                     <tr class="bg-slate-50 text-slate-600 text-left text-xs font-bold uppercase border-b">
                         <th class="p-4">Driver Name</th>
-                        <th class="p-4">Mobile</th>
-                        <th class="p-4">Licence No.</th>
+                        <th class="p-4">Mobile Contact</th>
+                        <th class="p-4">Emirates ID</th>
+                        <th class="p-4">Licence Number</th>
+                        <th class="p-4">Licence Expiry</th>
                         <th class="p-4">Assigned Vehicle</th>
+                        <th class="p-4">Status</th>
                     </tr>
                 `;
                 drivers.forEach(d => {
@@ -2893,12 +3363,17 @@
                         <tr class="hover:bg-slate-50 border-b">
                             <td class="p-4 font-semibold">${d.name}</td>
                             <td class="p-4">${d.mobile}</td>
+                            <td class="p-4 font-mono">${d.emiratesId}</td>
                             <td class="p-4 font-mono">${d.licenceNumber}</td>
-                            <td class="p-4 font-medium">${v ? v.plateNumber : 'Unassigned'}</td>
+                            <td class="p-4">${d.licenceExpiry}</td>
+                            <td class="p-4 font-medium text-slate-600">${v ? v.plateNumber : 'Unassigned'}</td>
+                            <td class="p-4 font-semibold">${d.status}</td>
                         </tr>
                     `;
                 });
             }
+
+            initAllDataTables();
         }
 
         async function showBackup() {
@@ -2925,6 +3400,11 @@
             document.body.appendChild(downloadLink);
             downloadLink.click();
             document.body.removeChild(downloadLink);
+        }
+
+        function exportReportToCSV() {
+            const mod = document.getElementById('report-module').value;
+            exportTableToCSV(`wadi_al_raihan_report_${mod}.csv`);
         }
 
         async function populateDropdowns() {
@@ -3155,6 +3635,9 @@
                 if (record.status === 'Under Maintenance') statusBadge = 'bg-amber-50 text-amber-700 border border-amber-200';
                 if (record.status === 'Sold') statusBadge = 'bg-rose-50 text-rose-700 border border-rose-200';
 
+                const historyList = await getAllRecords('history');
+                const vHistory = historyList.filter(h => h.vehicleId === record.id && h.type === 'Driver Change').sort((a, b) => new Date(b.date) - new Date(a.date));
+
                 htmlContent = `
                     <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
                         <div>
@@ -3256,6 +3739,21 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="border-t border-slate-100 pt-4 space-y-3">
+                        <div class="text-xs font-bold text-slate-700 uppercase tracking-wide">Driver Assignment Timeline</div>
+                        ${vHistory.length === 0 ? '<div class="text-xs text-slate-400 italic">No allocation logs recorded.</div>' : `
+                            <div class="border-l-2 border-slate-100 pl-4 ml-2 space-y-3.5 relative">
+                                ${vHistory.map(h => `
+                                    <div class="relative">
+                                        <span class="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-blue-500 ring-4 ring-white"></span>
+                                        <div class="text-[10px] font-bold text-slate-400">${h.date}</div>
+                                        <div class="text-xs font-medium text-slate-700 mt-0.5">${h.description}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `}
+                    </div>
                 `;
 
             } else if (type === 'drivers') {
@@ -3272,6 +3770,9 @@
                 let statusBadge = 'bg-slate-100 text-slate-800 border border-slate-200';
                 if (record.status === 'Active') statusBadge = 'bg-emerald-50 text-emerald-700 border border-emerald-200';
                 if (record.status === 'Inactive') statusBadge = 'bg-rose-50 text-rose-700 border border-rose-200';
+
+                const historyList = await getAllRecords('history');
+                const dHistory = historyList.filter(h => h.driverId === record.id && h.type === 'Driver Change').sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 htmlContent = `
                     <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
@@ -3310,6 +3811,21 @@
                             <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Internal Notes</div>
                             <div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 whitespace-pre-wrap">${record.notes || 'No internal logs recorded.'}</div>
                         </div>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-4 space-y-3">
+                        <div class="text-xs font-bold text-slate-700 uppercase tracking-wide">Vehicle Assignment Timeline</div>
+                        ${dHistory.length === 0 ? '<div class="text-xs text-slate-400 italic">No allocation logs recorded.</div>' : `
+                            <div class="border-l-2 border-slate-100 pl-4 ml-2 space-y-3.5 relative">
+                                ${dHistory.map(h => `
+                                    <div class="relative">
+                                        <span class="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-emerald-500 ring-4 ring-white"></span>
+                                        <div class="text-[10px] font-bold text-slate-400">${h.date}</div>
+                                        <div class="text-xs font-medium text-slate-700 mt-0.5">${h.description}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `}
                     </div>
                 `;
 
@@ -4145,12 +4661,15 @@
             const id = hash.split('/')[2];
             showVehicleDetail(id);
         };
-        document.getElementById('report-selector').onchange = () => showReports();
-
-        document.getElementById('export-report-btn').onclick = () => {
-            const mod = document.getElementById('report-selector').value;
-            exportTableToCSV(`wadi_al_raihan_report_${mod}.csv`);
+        document.getElementById('report-module').onchange = () => showReports();
+        document.getElementById('report-apply-filters').onclick = () => showReports();
+        document.getElementById('report-reset-filters').onclick = () => {
+            document.getElementById('report-start-date').value = '';
+            document.getElementById('report-end-date').value = '';
+            showReports();
         };
+        document.getElementById('report-print-btn').onclick = () => window.print();
+        document.getElementById('report-csv-btn').onclick = () => exportReportToCSV();
 
         document.getElementById('backup-export-btn').onclick = () => exportBackup();
         document.getElementById('backup-import-trigger').onclick = () => {
