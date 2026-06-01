@@ -3594,7 +3594,9 @@
             const id = parts[2];
             document.querySelectorAll('.app-page').forEach(page => page.classList.add('hidden'));
             document.querySelectorAll('.nav-link').forEach(link => {
-                const href = link.getAttribute('href').slice(2);
+                const hrefAttr = link.getAttribute('href');
+                if (!hrefAttr) return;
+                const href = hrefAttr.slice(2);
                 if (href === parts[0]) {
                     link.classList.add('bg-slate-800', 'text-white');
                     link.classList.remove('text-slate-300');
