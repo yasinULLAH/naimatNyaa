@@ -835,6 +835,10 @@
 <i class="fa-solid fa-database text-lg md:text-sm"></i>
 <span class="text-[10px] md:text-sm sidebar-text">Backup &amp; Restore</span>
 </a>
+<button class="nav-link flex flex-col md:flex-row items-center gap-1 md:gap-3 px-3 py-1.5 md:px-4 md:py-2.5 rounded-lg text-emerald-400 hover:bg-slate-800 hover:text-emerald-300 transition-all min-w-[44px] min-h-[44px] justify-center md:justify-start hidden w-full focus:outline-none" id="install-pwa-btn">
+<i class="fa-solid fa-download text-lg md:text-sm"></i>
+<span class="text-[10px] md:text-sm sidebar-text">Install App</span>
+</button>
 </nav>
 </aside>
 <div class="flex-grow flex flex-col min-w-0 md:h-full md:overflow-hidden">
@@ -4938,7 +4942,33 @@
             }
         }
         setInterval(() => checkAutoBackup(), 30000);
+
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const installBtn = document.getElementById('install-pwa-btn');
+            if (installBtn) installBtn.classList.remove('hidden');
+        });
+
         document.addEventListener('DOMContentLoaded', async () => {
+            const installBtn = document.getElementById('install-pwa-btn');
+            if (installBtn) {
+                installBtn.addEventListener('click', async () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        if (outcome === 'accepted') {
+                            installBtn.classList.add('hidden');
+                        }
+                        deferredPrompt = null;
+                    }
+                });
+            }
+            window.addEventListener('appinstalled', () => {
+                if (installBtn) installBtn.classList.add('hidden');
+                deferredPrompt = null;
+            });
             await openDB();
             const savedUser = localStorage.getItem('currentUser');
             if (savedUser) {
