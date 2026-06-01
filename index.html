@@ -438,7 +438,28 @@
             font-size: 0.6rem;
             color: var(--secondary-color);
         }
+        table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before,
+        table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control::before {
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            content: "\f054" !important;
+            font-family: "Font Awesome 6 Free" !important;
+            font-weight: 900 !important;
+            color: var(--secondary-color) !important;
+            font-size: 0.75rem !important;
+            line-height: 1 !important;
+            margin-right: 0.4rem !important;
+            vertical-align: middle !important;
+            display: inline-block !important;
+            transition: transform 0.2s ease !important;
+        }
 
+        table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td.dtr-control::before,
+        table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control::before {
+            content: "\f078" !important;
+            color: #ef4444 !important;
+        }
         button.dt-button,
         div.dt-button,
         a.dt-button,
