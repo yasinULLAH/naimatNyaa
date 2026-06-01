@@ -57,6 +57,18 @@ if (workbox) {
         "revision": "d3ceb161cfab9e9c5f40a93e15e5be27"
     },
     {
+        "url": "client readme.md",
+        "revision": "ab31bfea897d87b5966d656afd7b038d"
+    },
+    {
+        "url": "client readme.pdf",
+        "revision": "a1a179bf269ec4b8c90c50fbc641cfa7"
+    },
+    {
+        "url": "features and functionalities.md",
+        "revision": "7194c8ff4cb8ba0448eb922409c12484"
+    },
+    {
         "url": "index.html",
         "revision": "ec96134b0fa6cd259acf368997586501"
     },
@@ -73,8 +85,12 @@ if (workbox) {
         "revision": "3ec872e4f752840ad8f85922ff6cebe7"
     },
     {
+        "url": "readme.md",
+        "revision": "70193bdb7093cdfaec30dafc2ce5e745"
+    },
+    {
         "url": "sw.js",
-        "revision": "093880e1c0576d5b89571a3be6089085"
+        "revision": "834b78f5521b25e8e9cb99a4519bfd2a"
     }
 ]);
 
